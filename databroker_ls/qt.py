@@ -35,7 +35,7 @@ class ls():
     TIME = '' # this is a parameter I may want to change later
     CHUNK_SIZE = 100 # how many entries get loaded in each group
 
-    def __init__(self):
+    def __init__(self, catalog):
         """
             The goal is to load all UUIDs into the removableCatalog variable
             This way, the user can load as many or as few entries as they choose
@@ -43,6 +43,7 @@ class ls():
         """
 
         super().__init__()
+        self.catalog = catalog
         query = TimeRange() # when no time range is specified, it loads all entries
         self.removableCatalog = list(self.catalog.search(query)) # how all the UUIDs are loaded into removable catalog
         UUIDtoTime = {self.removableCatalog[x]: self.catalog[self.removableCatalog[x]].metadata["start"]["time"] for x in range(len(self.removableCatalog))}
@@ -94,10 +95,11 @@ class ls():
         data = [[self.toReadableDate(self.catalog[x].metadata["start"]["time"]),
                  self.catalog[x].metadata["start"]["scan_id"], (self.catalog[x].metadata["start"]["uid"])[:8]]
                 for x in currentView]
+        rArr = []
         if len(data) != 0:
             for arr in data:
-                print(arr[0], "   ", arr[1], "   ", arr[2])
-            return "Hit enter to see more"
+                rArr.append(str(arr[0]) + "   " + str(arr[1]) + "   " + str(arr[2]))
+            return rArr, "Hit enter to see more"
         else:
             return "exit"
 
@@ -105,7 +107,7 @@ class ls():
 #--------------------------------------------------
 def main():
     """Make a jazz noise here"""
-    object = ls() # instantiates object
+    object = ls(catalog['bluesky-tutorial-BMM'])  # instantiates object
 
 
 # --------------------------------------------------

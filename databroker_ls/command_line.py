@@ -23,7 +23,7 @@ def on_press(key, object):
 
 
 def main():
-    object = ls()  # instantiate new ls object
+    object = ls(catalog=catalog['bluesky-tutorial-BMM'])  # instantiate new ls object
     print("Starting Time          Scan ID      UUID")
     print(object.myOwnPrinting())  # start by loading the first set of entries
     # Collect events until released
