@@ -6,8 +6,10 @@ ascii_snek = """\
               `'--....--'`
 """
 
+
 def main():
     print(ascii_snek)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

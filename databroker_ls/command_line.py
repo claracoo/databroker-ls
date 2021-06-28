@@ -3,9 +3,12 @@ from pynput.keyboard import Key, Controller
 
 from databroker_ls.qt import ls
 
+from databroker import catalog
+
 """
 This file is a script to actually make the lines load dynamically
 """
+
 
 def on_press(key, object):
     """
@@ -23,13 +26,15 @@ def on_press(key, object):
 
 
 def main():
-    object = ls(catalog=catalog['bluesky-tutorial-BMM'])  # instantiate new ls object
+    object = ls(catalog=catalog["bluesky-tutorial-BMM"])  # instantiate new ls object
     print("Starting Time          Scan ID      UUID")
     print(object.myOwnPrinting())  # start by loading the first set of entries
     # Collect events until released
-    with keyboard.Listener(on_press=lambda event: on_press(event, object=object)) as listener:
+    with keyboard.Listener(
+        on_press=lambda event: on_press(event, object=object)
+    ) as listener:
         listener.join()  # will only join back up with the terminal when we return False
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

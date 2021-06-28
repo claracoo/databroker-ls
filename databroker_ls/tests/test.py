@@ -31,7 +31,7 @@ import string
 
 catalog = databroker.v2.temp()
 
-prg = '/Users/claracook/Desktop/test/databroker-ls/databroker_ls/stupid-ls.py'
+prg = "/Users/claracook/Desktop/test/databroker-ls/databroker_ls/stupid-ls.py"
 
 
 # --------------------------------------------------
@@ -45,44 +45,52 @@ def test_exists():
 def test_runnable():
     """Runs using python3"""
 
-    out = getoutput(f'python3 {prg}')
-    assert out.strip() != 'Hello, World!'
+    out = getoutput(f"python3 {prg}")
+    assert out.strip() != "Hello, World!"
 
 
 # --------------------------------------------------
 def random_char(y):
-    return ''.join(choice(string.ascii_letters) for x in range(y))
+    return "".join(choice(string.ascii_letters) for x in range(y))
 
 
 def place_data(numDataPts):
     sampleNames = [random_char(2) for x in range(numDataPts)]
     for i in range(numDataPts):
-        with RunBuilder(metadata={'sample': sampleNames[i], 'scan_id': randint(10000, 99999)}) as builder:
-            builder.add_stream("primary", data={'x': [1, 2, 3], 'y': [10, 20, 30]})
-            builder.add_stream("baseline", data={'A': [-1, -1], 'B': [250, 250]})
+        with RunBuilder(
+            metadata={"sample": sampleNames[i], "scan_id": randint(10000, 99999)}
+        ) as builder:
+            builder.add_stream("primary", data={"x": [1, 2, 3], "y": [10, 20, 30]})
+            builder.add_stream("baseline", data={"A": [-1, -1], "B": [250, 250]})
         run = builder.get_run()
-        for name, doc in run.documents(fill='yes'):
+        for name, doc in run.documents(fill="yes"):
             catalog.v1.insert(name, doc)
 
+
 def removeEmptyStrs(arr):
-    while ("" in arr):
+    while "" in arr:
         arr.remove("")
     return arr
+
 
 def joinDateAndTime(arr):
     arr[0] = arr[0] + " " + arr[1]
     arr.pop(1)
     return arr
 
+
 def test_place_data():
     numDataPoints = 20
     place_data(numDataPoints)
     object = ls(catalog=catalog)
-    spaced = [joinDateAndTime(removeEmptyStrs(x.split(" "))) for x in object.myOwnPrinting()[0]]
+    spaced = [
+        joinDateAndTime(removeEmptyStrs(x.split(" ")))
+        for x in object.myOwnPrinting()[0]
+    ]
     for i in range(numDataPoints):
-        assert object.toReadableDate(catalog[spaced[i][2]].metadata["start"]["time"]) == spaced[i][0]
+        assert (
+            object.toReadableDate(catalog[spaced[i][2]].metadata["start"]["time"])
+            == spaced[i][0]
+        )
         assert str(catalog[spaced[i][2]].metadata["start"]["scan_id"]) == spaced[i][1]
         assert catalog[spaced[i][2]].metadata["start"]["uid"][:8] == spaced[i][2]
-
-
-
