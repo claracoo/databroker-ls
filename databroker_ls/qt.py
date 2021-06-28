@@ -46,7 +46,6 @@ class ls:
 
         super().__init__()
         self.catalog = catalog
-        print(len(list(self.catalog)))
         query = TimeRange()  # when no time range is specified, it loads all entries
         self.removableCatalog = list(
             self.catalog.search(query)
@@ -98,6 +97,7 @@ class ls:
         # return df
 
     def toTablePrint(self):
+        """This was an ugly printing idea"""
         currentView = self.getCurrentSubcatalog(
             self.CHUNK_SIZE
         )  # get what we want to load so far
@@ -116,30 +116,38 @@ class ls:
         # tp.table(data, ["Start Time", "Scan ID", "Partial UUID"])
 
     def myOwnPrinting(self):
+        """ "Formats the array necessary to print things later"""
         currentView = self.getCurrentSubcatalog(
             self.CHUNK_SIZE
         )  # get what we want to load so far
         data = [
             [
-                self.toReadableDate(self.catalog[x].metadata["start"].get("time", "")),
-                self.catalog[x].metadata["start"].get("scan_id", ""),
-                (self.catalog[x].metadata["start"].get("uid", ""))[:8],
+                self.toReadableDate(
+                    self.catalog[x].metadata["start"].get("time", "None               ")
+                ), # make the data something a human could understand
+                self.catalog[x].metadata["start"].get("scan_id", "None "),
+                (self.catalog[x].metadata["start"].get("uid", "None    "))[:8],
             ]
             for x in currentView
-        ]
-        rArr = []
+        ]  # gets the time, scan_id and beginning of uid
+
         if len(data) != 0:
-            for arr in data:
-                rArr.append(str(arr[0]) + "   " + str(arr[1]) + "   " + str(arr[2]))
-            return rArr, "Hit enter to see more"
+            return (
+                data,
+                "Hit enter to see more or press esc to exit",
+            )  # includes array from which we want to print, and helpful message
         else:
-            return "exit"
+            return (
+                data,
+                "exit",
+            )  # data should be empty --> allows the return type at 0 and 1 to always exist
+            # the word exit is a shorthand key term that is checked in the file command_line.py
 
 
 # --------------------------------------------------
 def main():
     """Make a jazz noise here"""
-    #object = ls(catalog["bluesky-tutorial-BMM"])  # instantiates object
+    # object = ls(catalog["bluesky-tutorial-BMM"])  # instantiates object
 
 
 # --------------------------------------------------
