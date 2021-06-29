@@ -13,7 +13,7 @@ def get_args():
     parser.add_argument(
         '-n',
         '--number',
-        help='Pass the catalog you want to list',
+        help='How many data points do you want to be shown in one load',
         type=int,
         dest='number',
         default=10
