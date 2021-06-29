@@ -82,7 +82,7 @@ def joinDateAndTime(arr):
 def test_place_data():
     numDataPoints = 20
     place_data(numDataPoints)
-    object = ls(catalog=catalog)
+    object = ls(catalog=catalog, fullUID=False)
     spaced = object.myOwnPrinting()[0]
     for i in range(numDataPoints):
         assert object.toReadableDate(
@@ -92,3 +92,11 @@ def test_place_data():
             spaced[i][1]
         )
         assert catalog[spaced[i][2]].metadata["start"]["uid"][:8] == str(spaced[i][2])
+
+# --------------------------------------------------
+def test_full_uuid():
+    arg = 'db-ls --catalog bluesky-tutorial-RSOXS -a'
+    out = getoutput('db-ls --catalog bluesky-tutorial-RSOXS -a')
+    print(out.strip())
+    expected = ('2019-11-17 04:28:56     6959     777b44ae-4576-4a15-b044-d5fc6e88797b')
+    assert out.strip() == expected

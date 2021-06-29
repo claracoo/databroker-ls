@@ -31,13 +31,14 @@ class ls:
     """This class holds the act of going from the searching the catalog to a pandas dataframe"""
 
     catalog = []  # particular catalog we're referencing
+    fullUID = False
     removableCatalog = (
         []
     )  # the catalog's list of UUIDs will be copied in here, and then removed as they are printed
     TIME = ""  # this is a parameter I may want to change later
     CHUNK_SIZE = 100  # how many entries get loaded in each group
 
-    def __init__(self, catalog):
+    def __init__(self, catalog, fullUID):
         """
         The goal is to load all UUIDs into the removableCatalog variable
         This way, the user can load as many or as few entries as they choose
@@ -46,6 +47,7 @@ class ls:
 
         super().__init__()
         self.catalog = catalog
+        self.fullUID = fullUID
         query = TimeRange()  # when no time range is specified, it loads all entries
         self.removableCatalog = list(
             self.catalog.search(query)
@@ -120,13 +122,17 @@ class ls:
         currentView = self.getCurrentSubcatalog(
             self.CHUNK_SIZE
         )  # get what we want to load so far
+        uuidLen = 8  # standard option is to only show half the uid
+        if self.fullUID:
+            uuidLen = 36
+            # if the user specifies that they want the whole thing, it is 36 chars long
         data = [
             [
                 self.toReadableDate(
                     self.catalog[x].metadata["start"].get("time", "None               ")
-                ), # make the data something a human could understand
+                ),  # make the data something a human could understand
                 self.catalog[x].metadata["start"].get("scan_id", "None "),
-                (self.catalog[x].metadata["start"].get("uid", "None    "))[:8],
+                (self.catalog[x].metadata["start"].get("uid", "None    "))[:uuidLen],
             ]
             for x in currentView
         ]  # gets the time, scan_id and beginning of uid

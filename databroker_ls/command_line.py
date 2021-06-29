@@ -34,7 +34,7 @@ def on_press(key, object):
 
 
 def main():
-    object = ls(catalog=catalog[get_args().catalog])  # instantiate new ls object
+    object = ls(catalog=catalog[get_args().catalog], fullUID=get_args().all)  # instantiate new ls object
     print("Starting Time          Scan ID      UUID")  # titles for our columns
     data = object.myOwnPrinting() # first time we access data (no user actions necessary after command)
     for arr in data[0]:

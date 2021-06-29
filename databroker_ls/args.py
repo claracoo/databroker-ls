@@ -14,6 +14,7 @@ def get_args():
         '-a',
         '--all',
         action='store_true',
+        dest='all',
         help='Show full UID'
     )
     args = parser.parse_args()
