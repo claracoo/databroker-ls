@@ -16,6 +16,8 @@ from bluesky_widgets.models.plot_builders import Lines
 
 # from bluesky_widgets.qt.figures import QtFigure
 
+from databroker_ls.args import get_args
+
 import tempfile
 from suitcase.msgpack import Serializer
 import tableprint as tp
@@ -36,7 +38,8 @@ class ls:
         []
     )  # the catalog's list of UUIDs will be copied in here, and then removed as they are printed
     TIME = ""  # this is a parameter I may want to change later
-    CHUNK_SIZE = 100  # how many entries get loaded in each group
+    CHUNK_SIZE = 10  # how many entries get loaded in each group
+    UUIDtoIndex = {}
 
     def __init__(self, catalog, fullUID):
         """
@@ -59,8 +62,11 @@ class ls:
             for x in range(len(self.removableCatalog))
         }
         self.removableCatalog = list(
-            x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1])
+            x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1], reverse=True)
         )
+        self.UUIDtoIndex = {self.removableCatalog[k][:8]: ((-1) * k) - 1 for k in
+                   range(len(self.removableCatalog))}
+        self.CHUNK_SIZE = get_args().number
 
     def getCurrentSubcatalog(self, chunk_size):
         """ "
@@ -136,7 +142,6 @@ class ls:
             ]
             for x in currentView
         ]  # gets the time, scan_id and beginning of uid
-
         if len(data) != 0:
             return (
                 data,
@@ -148,6 +153,10 @@ class ls:
                 "exit",
             )  # data should be empty --> allows the return type at 0 and 1 to always exist
             # the word exit is a shorthand key term that is checked in the file command_line.py
+
+    # def get_backwards_index(self):
+    #     return UUIDtoIndex
+
 
 
 # --------------------------------------------------
