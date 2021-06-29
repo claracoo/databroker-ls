@@ -51,14 +51,14 @@ setup(
     packages=find_packages(exclude=["docs", "tests"]),
     entry_points={
         "console_scripts": [
-            "snek = databroker_ls.snek:main",
+            "db-snek = databroker_ls.snek:main",
             "db-ls = databroker_ls.command_line:main",
         ],
     },
     include_package_data=True,
     package_data={
         "databroker_ls": [
-            "snek = databroker_ls.snek.py",
+            "db-snek = databroker_ls.snek.py",
             "db-ls = databroker_ls.command_line.py"
             # When adding files here, remember to update MANIFEST.in as well,
             # or else they will not be included in the distribution on PyPI!
