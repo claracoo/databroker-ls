@@ -1,6 +1,8 @@
 import argparse
+from databroker_ls.catalog import SpecifiedCatalog
 
 def get_args():
+    specifiedCatalog = SpecifiedCatalog()
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '-c',
@@ -8,7 +10,7 @@ def get_args():
         help='Pass the catalog you want to list',
         type=str,
         dest='catalog',
-        default='bluesky-tutorial-BMM'
+        default=specifiedCatalog.currentCatalog
     )
     parser.add_argument(
         '-n',
@@ -31,6 +33,13 @@ def get_args():
         action='store_true',
         dest='index',
         help='Show backwards indices'
+    )
+    parser.add_argument(
+        '-r',
+        '--reverse',
+        action='store_true',
+        dest='reverse',
+        help='List the runs in reverse order (oldest to newest)'
     )
     args = parser.parse_args()
     return args

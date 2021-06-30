@@ -61,11 +61,18 @@ class ls:
             ]["time"]
             for x in range(len(self.removableCatalog))
         }
-        self.removableCatalog = list(
-            x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1], reverse=True)
-        )
-        self.UUIDtoIndex = {self.removableCatalog[k][:8]: ((-1) * k) - 1 for k in
-                   range(len(self.removableCatalog))}
+        if get_args().reverse:
+            self.removableCatalog = list(
+                x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1])
+            )
+            self.UUIDtoIndex = {self.removableCatalog[k][:8]: (-1) * (len(self.removableCatalog) - k) for k in
+                                range(len(self.removableCatalog))}
+        else:
+            self.removableCatalog = list(
+                x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1], reverse=True)
+            )
+            self.UUIDtoIndex = {self.removableCatalog[k][:8]: ((-1) * k) - 1 for k in
+                                range(len(self.removableCatalog))}
         self.CHUNK_SIZE = get_args().number
 
     def getCurrentSubcatalog(self, chunk_size):
@@ -87,41 +94,6 @@ class ls:
         """Linux time to human readable date and time"""
         return datetime.utcfromtimestamp(linuxtime).strftime("%Y-%m-%d %H:%M:%S")
 
-    def toPandas(self):
-        """
-        Takes the UUIDs and puts them into actual bluesky runs
-        Takes these runs to get info that we can list for users, to make runs easier to find
-        """
-
-        # currentView = self.getCurrentSubcatalog(self.CHUNK_SIZE) # get what we want to load so far
-        # #next line: actual information we want to format (get info from bluesky runs)
-        # data = [[self.toReadableDate(self.catalog[x].metadata["start"]["time"]), self.catalog[x].metadata["start"]["scan_id"], (self.catalog[x].metadata["start"]["uid"])[:8]] for x in currentView]
-        #
-        # indexing = pd.Series([x for x in range(-1, (len(currentView) + 1) * -1, -1)]) # default pandas indexing is misleading --> turn into something databroker actuall uses (backward index)
-        #
-        # df = pd.DataFrame(data, columns =['Start Time', 'Scan ID', 'UUID Partial']).set_index(indexing) # label the columns and set the indexes to indexing made in prev line
-        # df.index.name = 'Backwards Index' # give index column a name
-        return self.myOwnPrinting()
-        # return df
-
-    def toTablePrint(self):
-        """This was an ugly printing idea"""
-        currentView = self.getCurrentSubcatalog(
-            self.CHUNK_SIZE
-        )  # get what we want to load so far
-        # next line: actual information we want to format (get info from bluesky runs)
-        # data = np.array(
-        #     [
-        #         [
-        #             self.toReadableDate(self.catalog[x].metadata["start"]["time"]),
-        #             self.catalog[x].metadata["start"]["scan_id"],
-        #             (self.catalog[x].metadata["start"]["uid"])[:8],
-        #         ]
-        #         for x in currentView
-        #     ]
-        # )
-        # tp.banner("Welcome to tableprint!")
-        # tp.table(data, ["Start Time", "Scan ID", "Partial UUID"])
 
     def myOwnPrinting(self):
         """ "Formats the array necessary to print things later"""
@@ -153,10 +125,6 @@ class ls:
                 "exit",
             )  # data should be empty --> allows the return type at 0 and 1 to always exist
             # the word exit is a shorthand key term that is checked in the file command_line.py
-
-    # def get_backwards_index(self):
-    #     return UUIDtoIndex
-
 
 
 # --------------------------------------------------

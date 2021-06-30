@@ -6,10 +6,11 @@ from databroker_ls.qt import ls
 from databroker import catalog
 
 from databroker_ls.args import get_args
-
+from databroker_ls.catalog import SpecifiedCatalog
 """
 This file is a script to actually make the lines load dynamically
 """
+
 
 def format_printing(data, object):
     for i in range(len(data[0])):
@@ -41,7 +42,12 @@ def on_press(key, object):
 
 
 def main():
-    object = ls(catalog=catalog[get_args().catalog], fullUID=get_args().all)  # instantiate new ls object
+    currentCatalog = get_args().catalog
+    if currentCatalog == "":
+        specifiedCatalog = SpecifiedCatalog()
+        specifiedCatalog.query_for_catalog()
+        currentCatalog = specifiedCatalog.currentCatalog
+    object = ls(catalog=catalog[currentCatalog], fullUID=get_args().all)  # instantiate new ls object
     print("     Starting Time          Scan ID      UUID")  # titles for our columns
     data = object.myOwnPrinting() # first time we access data (no user actions necessary after command)
     format_printing(data, object)
