@@ -24,8 +24,7 @@ class SpecifiedCatalog:
 
         while True:
             sys.stdout.write(prompt)
-            choice = input().strip("'")
-            choice = choice.strip('"')
+            choice = input().strip("'").strip('"')
             if choice == "":
                 sys.stdout.write(f"\nYou have chosen the default, or the {default}, catalog.\n\nLoading catalog...\n")
                 self.currentCatalog = default

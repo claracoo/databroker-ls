@@ -1,7 +1,7 @@
 from pynput import keyboard
 from pynput.keyboard import Key, Controller
 
-from databroker_ls.qt import ls
+from databroker_ls.ls import ls
 
 from databroker import catalog
 
@@ -47,7 +47,7 @@ def main():
         specifiedCatalog = SpecifiedCatalog()
         specifiedCatalog.query_for_catalog()
         currentCatalog = specifiedCatalog.currentCatalog
-    object = ls(catalog=catalog[currentCatalog], fullUID=get_args().all)  # instantiate new ls object
+    object = ls(catalog=catalog[currentCatalog], fullUID=get_args().all, reverse=get_args().reverse, number=get_args().number)  # instantiate new ls object
     print("     Starting Time          Scan ID      UUID")  # titles for our columns
     data = object.myOwnPrinting() # first time we access data (no user actions necessary after command)
     format_printing(data, object)

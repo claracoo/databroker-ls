@@ -40,8 +40,10 @@ class ls:
     TIME = ""  # this is a parameter I may want to change later
     CHUNK_SIZE = 10  # how many entries get loaded in each group
     UUIDtoIndex = {}
+    reverse = False
+    number = 100
 
-    def __init__(self, catalog, fullUID):
+    def __init__(self, catalog, fullUID, reverse, number):
         """
         The goal is to load all UUIDs into the removableCatalog variable
         This way, the user can load as many or as few entries as they choose
@@ -51,6 +53,8 @@ class ls:
         super().__init__()
         self.catalog = catalog
         self.fullUID = fullUID
+        self.reverse = reverse
+        self.CHUNK_SIZE = number
         query = TimeRange()  # when no time range is specified, it loads all entries
         self.removableCatalog = list(
             self.catalog.search(query)
@@ -61,7 +65,7 @@ class ls:
             ]["time"]
             for x in range(len(self.removableCatalog))
         }
-        if get_args().reverse:
+        if self.reverse:
             self.removableCatalog = list(
                 x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1])
             )
@@ -73,7 +77,7 @@ class ls:
             )
             self.UUIDtoIndex = {self.removableCatalog[k][:8]: ((-1) * k) - 1 for k in
                                 range(len(self.removableCatalog))}
-        self.CHUNK_SIZE = get_args().number
+
 
     def getCurrentSubcatalog(self, chunk_size):
         """ "

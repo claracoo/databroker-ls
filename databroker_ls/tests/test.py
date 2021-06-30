@@ -20,7 +20,7 @@ from bluesky_live.run_builder import build_simple_run
 import databroker
 import databroker.tutorial_utils
 import suitcase.msgpack
-from databroker_ls.qt import ls
+from databroker_ls.ls import ls
 
 from databroker._drivers.msgpack import BlueskyMsgpackCatalog
 
@@ -82,7 +82,7 @@ def joinDateAndTime(arr):
 def test_place_data():
     numDataPoints = 20
     place_data(numDataPoints)
-    object = ls(catalog=catalog, fullUID=False)
+    object = ls(catalog=catalog, fullUID=False, reverse=False, number=100)
     spaced = object.myOwnPrinting()[0]
     for i in range(numDataPoints):
         assert object.toReadableDate(

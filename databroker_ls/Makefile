@@ -1,4 +1,4 @@
 .PHONY: test
 
 test:
-	pytest -xvs tests/test.py
+	pytest -xvs --disable-warnings tests/test.py
