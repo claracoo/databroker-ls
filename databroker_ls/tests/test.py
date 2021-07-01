@@ -82,7 +82,7 @@ def joinDateAndTime(arr):
 def test_place_data():
     numDataPoints = 20
     place_data(numDataPoints)
-    object = ls(catalog=catalog, fullUID=False, reverse=False, number=100)
+    object = ls(catalog=catalog, fullUID=True, reverse=False, number=numDataPoints)
     spaced = object.myOwnPrinting()[0]
     for i in range(numDataPoints):
         assert object.toReadableDate(
@@ -91,4 +91,4 @@ def test_place_data():
         assert str(catalog[spaced[i][2]].metadata["start"]["scan_id"]) == str(
             spaced[i][1]
         )
-        assert catalog[spaced[i][2]].metadata["start"]["uid"][:8] == str(spaced[i][2])
+        assert catalog[spaced[i][2]].metadata["start"]["uid"] == str(spaced[i][2])

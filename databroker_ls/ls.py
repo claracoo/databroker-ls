@@ -69,15 +69,19 @@ class ls:
             self.removableCatalog = list(
                 x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1])
             )
-            self.UUIDtoIndex = {self.removableCatalog[k][:8]: (-1) * (len(self.removableCatalog) - k) for k in
-                                range(len(self.removableCatalog))}
+            self.UUIDtoIndex = {
+                self.removableCatalog[k][:8]: (-1) * (len(self.removableCatalog) - k)
+                for k in range(len(self.removableCatalog))
+            }
         else:
             self.removableCatalog = list(
-                x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1], reverse=True)
+                x[0]
+                for x in sorted(UUIDtoTime.items(), key=lambda x: x[1], reverse=True)
             )
-            self.UUIDtoIndex = {self.removableCatalog[k][:8]: ((-1) * k) - 1 for k in
-                                range(len(self.removableCatalog))}
-
+            self.UUIDtoIndex = {
+                self.removableCatalog[k][:8]: ((-1) * k) - 1
+                for k in range(len(self.removableCatalog))
+            }
 
     def getCurrentSubcatalog(self, chunk_size):
         """ "
@@ -97,7 +101,6 @@ class ls:
     def toReadableDate(self, linuxtime):
         """Linux time to human readable date and time"""
         return datetime.utcfromtimestamp(linuxtime).strftime("%Y-%m-%d %H:%M:%S")
-
 
     def myOwnPrinting(self):
         """ "Formats the array necessary to print things later"""
