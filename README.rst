@@ -18,6 +18,7 @@ Features
 --------
 
 ## Installation
+
 1. Clone it:
 
 ``git clone https://github.com/claracoo/databroker-ls.git``
@@ -35,7 +36,6 @@ Features
 
 4. Setup the entry points to easily call intended uses
 ``python3 setup.py develop``
-
 
 5. Are you missing any libraries or modules?
 
