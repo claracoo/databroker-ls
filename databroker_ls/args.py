@@ -14,6 +14,14 @@ def get_args():
         default=specifiedCatalog.currentCatalog,
     )
     parser.add_argument(
+        "-u",
+        "--updateDefault",
+        help="Change the default catalog name",
+        type=str,
+        dest="updateDefault",
+        default=specifiedCatalog.currentCatalog,
+    )
+    parser.add_argument(
         "-n",
         "--number",
         help="How many data points do you want to be shown in one load",

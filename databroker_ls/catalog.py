@@ -55,13 +55,13 @@ class SpecifiedCatalog:
                     f"\nYou responded with {choice}.\nThis is not one of the available catalogs.\n\n"
                 )  # tell user to try again
 
-    def change_default_catalog(self, filename):
+    def change_default_catalog(self, filename, new_catalog):
         """
             This function puts the key value pair in the yml file.
             This should be of the form:
                 'catalog_name': [SOME CATALOG]
         """
 
-        data = {"catalog_name": self.currentCatalog}  # set up the key value pair
+        data = {"catalog_name": new_catalog}  # set up the key value pair
         with open(filename, "w+") as f:  # open file to write there
             yaml.dump(data, f)  # put the key value pair in the yml file

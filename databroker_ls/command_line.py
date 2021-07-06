@@ -122,7 +122,8 @@ def get_current_catalog(filename):
             with open(filename) as f:  # open yaml file
                 specifiedCatalog.query_for_catalog()  # this runs the script from catalog.py to prompt the user for their default choice
                 specifiedCatalog.change_default_catalog(
-                    filename
+                    filename,
+                    specifiedCatalog.currentCatalog
                 )  # update the yaml file to house the default
                 currentCatalog = (
                     specifiedCatalog.currentCatalog
@@ -130,7 +131,25 @@ def get_current_catalog(filename):
     return currentCatalog
 
 
+def set_default(filename):
+    changing_catalog = get_args().updateDefault  # get what is stored in the argument for updateDefault
+    if changing_catalog in list(catalog):  # don't update it to a catalog that we cannot access
+        specifiedCatalog = SpecifiedCatalog()  # get the catalog class
+        if not path.exists(
+                filename
+        ):  # if the file does not exist at all, we will want to create it
+            open(filename, "x+")  # create it
+        specifiedCatalog.change_default_catalog(filename, changing_catalog)  # change the catalog in the conf file
+    else:
+        with open(filename, "r") as f:  # open the yaml file we now know exists
+            documents = yaml.full_load(f)  # load the contents
+            # explanation to the user that the catalog they picked won't work
+            print(f"\nThe specified catalog was not available. The available catalogs are: \n{list(catalog)}\nWe will load data from the current default catalog: \n {documents['catalog_name']}\n")
+
+
 def main():
+    if get_args().updateDefault:  # if this argument is there, we need to update the default catalog
+        set_default(file)
     currentCatalog = get_current_catalog(
         file
     )  # get the catalog, either entered, default, or prompt for new default
