@@ -18,7 +18,7 @@ This file is a script to actually make the lines load dynamically
 """
 
 
-file = "/Users/claracook/Desktop/databroker-ls/conf_catalog.yml"
+file = "../conf_catalog.yml"
 
 
 def format_printing(data, object):
