@@ -34,7 +34,8 @@ Features
 
 ``. venv/bin/activate``
 
-4. Setup the entry points to easily call intended uses
+4. Setup the entry points to easily call intended uses:
+
 ``python3 setup.py develop``
 
 5. Are you missing any libraries or modules?
