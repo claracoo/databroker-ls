@@ -19,8 +19,6 @@ Features
 
 ## Installation
 
-OS X & Linux:
-
 ```
 git clone https://github.com/claracoo/databroker-ls.git
 ```
@@ -45,44 +43,46 @@ python3 setup.py develop
 
 Some libraries and modules to have installed:
 pynput:
-```
+``
 pip install pynput
-```
+``
 
 databroker:
-```
+``
 pip install databroker
-```
+``
 
 databroker-pack:
-```
+``
 pip install databroker-pack
-```
+``
 
 bluesky:
-```
+``
 pip install bluesky
-```
+``
 
 ophyd:
-```
+``
 pip install ophyd
-```
+``
 
 bluesky-widgets:
-```
+``
 pip install bluesky-widgets
-```
+``
 
 tableprint:
-```
+``
 pip install tableprint
-```
+``
 
 yaml:
-```
+``
 pip install pyyaml
-```
+``
+
+
 
 ## Usage example
 
