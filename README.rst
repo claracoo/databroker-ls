@@ -18,69 +18,61 @@ Features
 --------
 
 ## Installation
+1. Clone it:
 
-```
-git clone https://github.com/claracoo/databroker-ls.git
-```
+`git clone https://github.com/claracoo/databroker-ls.git `
 
-```
-cd databroker-ls
-```
+2. Go into the newly cloned directory:
 
-Please make sure python3 is installed. Create a new Virtual Environment. For example:
-```
-python3 -m venv venv
-```
-
-```
-. venv/bin/activate
-```
-
-```
-python3 setup.py develop
-```
+`cd databroker-ls`
 
 
-Some libraries and modules to have installed:
+3. Please make sure python3 is installed. Create a new Virtual Environment. For example:
+
+`python3 -m venv venv`
+
+`. venv/bin/activate`
+
+4. Setup the entry points to easily call intended uses
+`python3 setup.py develop`
+
+
+5. Are you missing any libraries or modules?
+
+Some Suggestions:
+
+
 pynput:
-``
-pip install pynput
-``
+
+`pip install pynput`
 
 databroker:
-``
-pip install databroker
-``
+
+`pip install databroker`
 
 databroker-pack:
-``
-pip install databroker-pack
-``
+
+`pip install databroker-pack`
 
 bluesky:
-``
-pip install bluesky
-``
+
+`pip install bluesky`
 
 ophyd:
-``
-pip install ophyd
-``
+
+`pip install ophyd`
 
 bluesky-widgets:
-``
-pip install bluesky-widgets
-``
+
+`pip install bluesky-widgets`
 
 tableprint:
-``
-pip install tableprint
-``
+
+`pip install tableprint`
 
 yaml:
-``
-pip install pyyaml
-``
+
+`pip install pyyaml`
 
 
 
