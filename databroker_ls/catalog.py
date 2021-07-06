@@ -31,7 +31,7 @@ class SpecifiedCatalog:
             raise ValueError("invalid default answer: '%s'" % default)
         while True:  # until the user makes an action, we should be stuck at this prompt
             sys.stdout.write(prompt)  # send user the situation
-            choice = input().strip("'").strip('"')  # normalize their input
+            choice = input().replace('"', "").replace("'", "").replace(" ", "").strip()  # normalize their input
             if (
                 choice == ""
             ):  # if they hit enter and put no input, give them the default

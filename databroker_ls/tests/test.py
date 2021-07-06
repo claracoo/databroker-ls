@@ -2,6 +2,7 @@
 """tests for hello.py"""
 
 import os
+import sys
 from subprocess import getstatusoutput, getoutput
 
 import msgpack
@@ -23,6 +24,9 @@ import suitcase.msgpack
 from databroker_ls.ls import ls
 
 from databroker._drivers.msgpack import BlueskyMsgpackCatalog
+from databroker_ls.catalog import SpecifiedCatalog
+from databroker_ls.command_line import check_for_yaml, get_current_catalog
+import yaml
 
 import re
 
@@ -92,3 +96,57 @@ def test_place_data():
             spaced[i][1]
         )
         assert catalog[spaced[i][2]].metadata["start"]["uid"] == str(spaced[i][2])
+
+
+def test_check_for_yaml():
+    filename = "/Users/claracook/Desktop/databroker-ls/conf_catalog.yml"
+    assert check_for_yaml(filename)[0] is True  # this should work because it is already set up on my machine
+    assert check_for_yaml(filename)[1] in list(databroker.catalog)
+    filename = "/Users/claracook/Desktop/databroker-ls/non_existent_file.yml"
+    assert check_for_yaml(filename)[0] is False  # this does not yet exist, but will be created here
+    assert check_for_yaml(filename)[0] is False  # just created but bad formatting (makefile will remove for next test run)
+
+    # check to make sure if the file exists but has the wrong things
+    data = {"stupid": "stupid"}
+    with open(filename, "w+") as f:  # open file to write there
+        yaml.dump(data, f)  # put the key value pair in the yml file
+    assert check_for_yaml(filename)[0] is False
+    data = {"empty": ""}
+    with open(filename, "w+") as f:  # open file to write there
+        yaml.dump(data, f)  # put the key value pair in the yml file
+    assert check_for_yaml(filename)[0] is False
+    data = {"catalog_name": ""}
+    with open(filename, "w+") as f:  # open file to write there
+        yaml.dump(data, f)  # put the key value pair in the yml file
+    assert check_for_yaml(filename)[0] is False
+    data = {"catalog_name": "wrong thing"}
+    with open(filename, "w+") as f:  # open file to write there
+        yaml.dump(data, f)  # put the key value pair in the yml file
+    assert check_for_yaml(filename)[0] is False
+
+
+def test_change_default_catalog():
+    filename = "/Users/claracook/Desktop/databroker-ls/test.yml"
+    open(filename, "x+")
+    data = {"catalog_name": "wrong thing"}
+    with open(filename, "w+") as f:  # open file to write there
+        yaml.dump(data, f)  # put the key value pair in the yml file
+    specifiedCatalog = SpecifiedCatalog()
+    specifiedCatalog.currentCatalog = "bluesky-tutorial-RSOXS"
+    specifiedCatalog.change_default_catalog(filename)
+    with open(filename, "r") as f:  # open the yaml file we now know exists
+        documents = yaml.full_load(f)  # load the contents
+        assert documents["catalog_name"] == "bluesky-tutorial-RSOXS"
+
+
+def test_query_for_catalog():
+    specifiedCatalog = SpecifiedCatalog()
+    expected = "bluesky-tutorial-BMM"
+    print("\ninput: JUST HIT ENTER")
+    specifiedCatalog.query_for_catalog()
+    assert expected == specifiedCatalog.currentCatalog
+
+    expected = "bluesky-tutorial-RSOXS"
+    print("\ninput: 'bluesky-tutorial-RSOXS'")
+    specifiedCatalog.query_for_catalog()
+    assert expected == specifiedCatalog.currentCatalog

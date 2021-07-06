@@ -98,11 +98,11 @@ def check_for_yaml(filename):
 
 def get_current_catalog(filename):
     """
-    This function sets and/or gets the catalog the user wants to use.
-    If the user manually enters one by using '--catalog [some catalog name]',
-    then we can set that as the catalog. We then check if they already have a
-    default set. If they do, we use that. The last option is to ask the user
-    to set their default.
+        This function sets and/or gets the catalog the user wants to use.
+        If the user manually enters one by using '--catalog [some catalog name]',
+        then we can set that as the catalog. We then check if they already have a
+        default set. If they do, we use that. The last option is to ask the user
+        to set their default.
     """
     currentCatalog = (
         get_args().catalog
