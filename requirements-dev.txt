@@ -8,6 +8,7 @@ sphinx
 twine
 # These are dependencies of various sphinx extensions for documentation.
 ipython
+IPython
 matplotlib
 numpydoc
 sphinx-copybutton
