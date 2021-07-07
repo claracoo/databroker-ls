@@ -45,23 +45,6 @@ def format_printing(data, object):
         print(data[1])  # reminds user of what to do next
 
 
-# def on_press(key, object):
-#     """
-#     Handle key presses: we only care about escape and enter/space
-#     """
-#     if key == keyboard.Key.esc:
-#         # Stop listener and get out of the loading window, back to regular terminal
-#         print("exiting...")
-#         return False
-#     else:
-#         if key == keyboard.Key.enter or key == keyboard.Key.space:
-#             # load the next iteration of the catalog
-#             data = (
-#                 object.myOwnPrinting()
-#             )  # hold the current array of runs without recalling it
-#             return format_printing(data, object)
-
-
 def check_for_yaml(filename):
     """ "
     This function checks if the yaml file meets our requirements
@@ -79,9 +62,7 @@ def check_for_yaml(filename):
     else:  # even if it does exist, we need it to have a beamline at the key "catalog_name"
         with open(filename, "r") as f:  # open the yaml file we now know exists
             documents = yaml.full_load(f)  # load the contents
-            print(documents)
             if documents is not None:
-                print("things")
                 for key, value in documents.items():
                     if (
                         key == "catalog_name"
@@ -155,23 +136,23 @@ def main():
     currentCatalog = get_current_catalog(
         file
     )  # get the catalog, either entered, default, or prompt for new default
-    print("Loading Catalog...")
+    print(f"Loading the \'{currentCatalog}\' Catalog...")  # remind the user what the current catalog they're using is
+    number = 0  # this is used in the ls class for how many runs should be shown. If it stays at 0, all runs will be shown
+    if get_args().head:  # if they only want to see the head (most recent)
+        number = get_args().number  # we will give the ls class the positive number (default is 10 but, they can specify)
+    if get_args().tail:  # if they only want to see the tail (most distant)
+        number = -1 * get_args().number  # we will give the ls class the negative number (default is -10 but, they can specify)
     object = ls(
-        catalog=catalog[currentCatalog],
-        fullUID=get_args().all,
-        reverse=get_args().reverse,
-        number=get_args().number,
+        catalog=catalog[currentCatalog],  # default or specified
+        fullUID=get_args().all,  # special case where we want to see the whole id
+        reverse=get_args().reverse,  # puts them in reverse order
+        number=number,  # tells us how many and if at the end, beginning or all of them
     )  # instantiate new ls object
     print("     Starting Time          Scan ID      UUID")  # titles for our columns
     data = (
         object.myOwnPrinting()
     )  # first time we access data (no user actions necessary after command)
     format_printing(data, object)
-    # Collect events until released
-    # with keyboard.Listener(
-    #     on_press=lambda event: on_press(event, object=object)
-    # ) as listener:
-    #     listener.join()  # will only join back up with the terminal when we return False
 
 
 if __name__ == "__main__":

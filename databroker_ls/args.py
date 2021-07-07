@@ -46,5 +46,19 @@ def get_args():
         dest="reverse",
         help="List the runs in reverse order (oldest to newest)",
     )
+    parser.add_argument(
+        "-he",
+        "--head",
+        action="store_true",
+        dest="head",
+        help="get most recent 10 runs",
+    )
+    parser.add_argument(
+        "-t",
+        "--tail",
+        action="store_true",
+        dest="tail",
+        help="get most distant 10 runs",
+    )
     args = parser.parse_args()
     return args

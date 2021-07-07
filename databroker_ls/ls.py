@@ -38,10 +38,9 @@ class ls:
         []
     )  # the catalog's list of UUIDs will be copied in here, and then removed as they are printed
     TIME = ""  # this is a parameter I may want to change later
-    CHUNK_SIZE = 10  # how many entries get loaded in each group
+    headOrTail = 0  # how many entries get loaded in each group
     UUIDtoIndex = {}
     reverse = False
-    number = 100
 
     def __init__(self, catalog, fullUID, reverse, number):
         """
@@ -54,7 +53,7 @@ class ls:
         self.catalog = catalog
         self.fullUID = fullUID
         self.reverse = reverse
-        self.CHUNK_SIZE = len(list(catalog))
+        self.headOrTail = number  # if it is 0, we will ignore it, if it is negative, we want the tail, if its posiitve we want the head
         query = TimeRange()  # when no time range is specified, it loads all entries
         self.removableCatalog = list(
             self.catalog.search(query)
@@ -82,21 +81,11 @@ class ls:
                 self.removableCatalog[k][:8]: ((-1) * k) - 1
                 for k in range(len(self.removableCatalog))
             }
+        if number < 0:  # if the user wants to see the tail (num is negative and defaulted to -10)
+            self.removableCatalog = self.removableCatalog[number:]
+        if number > 0:  # if the user wants to see the head (num is negative and defaulted to 10)
+            self.removableCatalog = self.removableCatalog[:number]
 
-    def getCurrentSubcatalog(self, chunk_size):
-        """ "
-        Helper function for toPandas() method
-        This gets the next section of the catalog to display
-        Removes the UUIDS used from removableCatalog
-        """
-
-        currentView = self.removableCatalog[
-            :chunk_size
-        ]  # puts the UUIDs we are looking at in a smaller list
-        del self.removableCatalog[
-            :chunk_size
-        ]  # removes same UUIDs from removableCatalog
-        return currentView
 
     def toReadableDate(self, linuxtime):
         """Linux time to human readable date and time"""
@@ -104,9 +93,6 @@ class ls:
 
     def myOwnPrinting(self):
         """ "Formats the array necessary to print things later"""
-        currentView = self.getCurrentSubcatalog(
-            self.CHUNK_SIZE
-        )  # get what we want to load so far
         uuidLen = 8  # standard option is to only show half the uid
         if self.fullUID:
             uuidLen = 36
@@ -119,7 +105,7 @@ class ls:
                 self.catalog[x].metadata["start"].get("scan_id", "None "),
                 (self.catalog[x].metadata["start"].get("uid", "None    "))[:uuidLen],
             ]
-            for x in currentView
+            for x in self.removableCatalog
         ]  # gets the time, scan_id and beginning of uid
         if len(data) != 0:
             return (
