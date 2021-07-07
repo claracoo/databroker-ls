@@ -24,16 +24,7 @@ from random import randint, choice, sample
 import string
 
 catalog = databroker.v2.temp()
-
-prg = "/Users/claracook/Desktop/test/databroker-ls/databroker_ls/stupid-ls.py"
-
-
-# --------------------------------------------------
-# def test_exists():
-#     """exists"""
-#
-#     assert os.path.isfile(prg)
-
+prg = "/Users/claracook/Desktop/test/databroker-ls/databroker_ls/ls.py"
 
 # --------------------------------------------------
 def test_runnable():
@@ -129,16 +120,4 @@ def test_change_default_catalog():
         documents = yaml.full_load(f)  # load the contents
         assert documents["catalog_name"] == "bluesky-tutorial-RSOXS"
 
-# not testable in github
-# def test_query_for_catalog():
-#     specifiedCatalog = SpecifiedCatalog()
-#     expected = "bluesky-tutorial-BMM"
-#     print("\ninput: JUST HIT ENTER")
-#     print("LOOK HERE", list(databroker.catalog))
-#     specifiedCatalog.query_for_catalog(default=list(databroker.catalog)[0])
-#     assert expected == specifiedCatalog.currentCatalog
-#
-#     expected = "bluesky-tutorial-RSOXS"
-#     print("\ninput: 'bluesky-tutorial-RSOXS'")
-#     specifiedCatalog.query_for_catalog(default=list(databroker.catalog)[0])
-#     assert expected == specifiedCatalog.currentCatalog
+
