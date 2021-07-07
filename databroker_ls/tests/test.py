@@ -102,7 +102,7 @@ def test_check_for_yaml():
     filename = "databroker-ls/conf_catalog.yml"
     assert check_for_yaml(filename)[0] is True  # this should work because it is already set up on my machine
     assert check_for_yaml(filename)[1] in list(databroker.catalog)
-    filename = "databroker-ls/non_existent_file.yml"
+    filename = "./non_existent_file.yml"
     assert check_for_yaml(filename)[0] is False  # this does not yet exist, but will be created here
     assert check_for_yaml(filename)[0] is False  # just created but bad formatting (makefile will remove for next test run)
 
@@ -126,7 +126,7 @@ def test_check_for_yaml():
 
 
 def test_change_default_catalog():
-    filename = "databroker-ls/test.yml"
+    filename = "./test.yml"
     open(filename, "x+")
     data = {"catalog_name": "wrong thing"}
     with open(filename, "w+") as f:  # open file to write there
