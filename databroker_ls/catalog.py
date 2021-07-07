@@ -15,7 +15,7 @@ class SpecifiedCatalog:
         super().__init__()
         self.currentCatalog = ""  # acts as a buffer between the catalog used in the
 
-    def query_for_catalog(self, default=list(catalog)[0]):
+    def query_for_catalog(self, default):
         """
         Explain to the user how to set their default choice.
         This will only be called once,

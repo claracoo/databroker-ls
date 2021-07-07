@@ -120,7 +120,7 @@ def get_current_catalog(filename):
             ]  # we set the catalog (and the backup listing in the catalog class) to be the listed default from the yaml file
         else:  # if either the file does not exist, or the "catalog_name" key is empty, we need to ask the user to set this
             with open(filename) as f:  # open yaml file
-                specifiedCatalog.query_for_catalog()  # this runs the script from catalog.py to prompt the user for their default choice
+                specifiedCatalog.query_for_catalog(default=list(catalog)[0])  # this runs the script from catalog.py to prompt the user for their default choice
                 specifiedCatalog.change_default_catalog(
                     filename,
                     specifiedCatalog.currentCatalog
