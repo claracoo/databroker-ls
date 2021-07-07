@@ -132,6 +132,7 @@ def test_query_for_catalog():
     specifiedCatalog = SpecifiedCatalog()
     expected = "bluesky-tutorial-BMM"
     print("\ninput: JUST HIT ENTER")
+    print("LOOK HERE", list(databroker.catalog))
     specifiedCatalog.query_for_catalog(default=list(databroker.catalog)[0])
     assert expected == specifiedCatalog.currentCatalog
 
