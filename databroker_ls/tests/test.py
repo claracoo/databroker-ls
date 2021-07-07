@@ -99,7 +99,7 @@ def test_place_data():
 
 
 def test_check_for_yaml():
-    filename = "databroker-ls/conf_catalog.yml"
+    filename = "./conf_catalog.yml"
     assert check_for_yaml(filename)[0] is True  # this should work because it is already set up on my machine
     assert check_for_yaml(filename)[1] in list(databroker.catalog)
     filename = "./non_existent_file.yml"
@@ -133,7 +133,7 @@ def test_change_default_catalog():
         yaml.dump(data, f)  # put the key value pair in the yml file
     specifiedCatalog = SpecifiedCatalog()
     specifiedCatalog.currentCatalog = "bluesky-tutorial-RSOXS"
-    specifiedCatalog.change_default_catalog(filename)
+    specifiedCatalog.change_default_catalog(filename, specifiedCatalog.currentCatalog)
     with open(filename, "r") as f:  # open the yaml file we now know exists
         documents = yaml.full_load(f)  # load the contents
         assert documents["catalog_name"] == "bluesky-tutorial-RSOXS"
