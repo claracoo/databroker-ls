@@ -20,3 +20,5 @@ databroker-pack
 ophyd
 bluesky-widgets
 tableprint
+pynput
+pyyaml
