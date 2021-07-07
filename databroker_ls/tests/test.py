@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """tests for hello.py"""
 
-import os
+import os.path
+from os import path
 import sys
 from subprocess import getstatusoutput, getoutput
 
@@ -89,8 +90,9 @@ def test_place_data():
 
 def test_check_for_yaml():
     filename = "../conf_catalog.yml"
-    assert check_for_yaml(filename)[0] is True  # this should work because it is already set up on my machine
-    assert check_for_yaml(filename)[1] in list(databroker.catalog)
+    if path.exists(filename):
+        assert check_for_yaml(filename)[0] is True  # this should work because it is already set up on my machine
+        assert check_for_yaml(filename)[1] in list(databroker.catalog)
     filename = "../non_existent_file.yml"
     assert check_for_yaml(filename)[0] is False  # this does not yet exist, but will be created here
     assert check_for_yaml(filename)[0] is False  # just created but bad formatting (makefile will remove for next test run)
