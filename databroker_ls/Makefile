@@ -2,5 +2,5 @@
 
 test:
 	pytest -xvs --disable-warnings tests/test.py
-	rm "/Users/claracook/Desktop/databroker-ls/non_existent_file.yml"
-	rm "/Users/claracook/Desktop/databroker-ls/test.yml"
+	rm "databroker-ls/non_existent_file.yml"
+	rm "databroker-ls/test.yml"
