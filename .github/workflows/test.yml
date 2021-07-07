@@ -39,5 +39,3 @@ jobs:
     - name: Test with pytest
       run: |
         pytest -xvs --disable-warnings databroker_ls/tests/test.py
-        rm "non_existent_file.yml"
-        rm "test.yml"
