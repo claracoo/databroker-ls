@@ -138,5 +138,5 @@ def test_query_for_catalog():
 
     expected = "bluesky-tutorial-RSOXS"
     print("\ninput: 'bluesky-tutorial-RSOXS'")
-    specifiedCatalog.query_for_catalog()
+    specifiedCatalog.query_for_catalog(default=list(databroker.catalog)[0])
     assert expected == specifiedCatalog.currentCatalog
