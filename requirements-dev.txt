@@ -15,3 +15,7 @@ sphinx-copybutton
 sphinx_rtd_theme
 bluesky_live
 bluesky
+databroker
+databroker-pack
+ophyd
+bluesky-widgets
