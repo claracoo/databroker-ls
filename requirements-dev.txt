@@ -19,3 +19,4 @@ databroker
 databroker-pack
 ophyd
 bluesky-widgets
+tableprint
