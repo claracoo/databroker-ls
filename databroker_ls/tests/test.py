@@ -5,7 +5,6 @@ import os
 import sys
 from subprocess import getstatusoutput, getoutput
 
-import msgpack
 import numpy as np
 import pytest
 
@@ -20,10 +19,8 @@ from bluesky_live.run_builder import build_simple_run
 
 import databroker
 import databroker.tutorial_utils
-import suitcase.msgpack
 from databroker_ls.ls import ls
 
-from databroker._drivers.msgpack import BlueskyMsgpackCatalog
 from databroker_ls.catalog import SpecifiedCatalog
 from databroker_ls.command_line import check_for_yaml, get_current_catalog
 import yaml
