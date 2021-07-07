@@ -3,24 +3,13 @@
 
 import os
 import sys
-from subprocess import getstatusoutput, getoutput
-
 import numpy as np
 import pytest
 
-from bluesky import RunEngine
-from bluesky.plans import count
-from ophyd.sim import det
-
-from bluesky.plans import count
-from bluesky.simulators import summarize_plan
 from bluesky_live.run_builder import RunBuilder
-from bluesky_live.run_builder import build_simple_run
 
 import databroker
-import databroker.tutorial_utils
 from databroker_ls.ls import ls
-
 from databroker_ls.catalog import SpecifiedCatalog
 from databroker_ls.command_line import check_for_yaml, get_current_catalog
 import yaml
