@@ -28,10 +28,10 @@ prg = "/Users/claracook/Desktop/test/databroker-ls/databroker_ls/stupid-ls.py"
 
 
 # --------------------------------------------------
-def test_exists():
-    """exists"""
-
-    assert os.path.isfile(prg)
+# def test_exists():
+#     """exists"""
+#
+#     assert os.path.isfile(prg)
 
 
 # --------------------------------------------------
