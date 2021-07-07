@@ -20,5 +20,5 @@ databroker-pack
 ophyd
 bluesky-widgets
 tableprint
-pynput
+#pynput
 pyyaml

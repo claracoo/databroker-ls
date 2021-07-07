@@ -54,7 +54,7 @@ class ls:
         self.catalog = catalog
         self.fullUID = fullUID
         self.reverse = reverse
-        self.CHUNK_SIZE = number
+        self.CHUNK_SIZE = len(list(catalog))
         query = TimeRange()  # when no time range is specified, it loads all entries
         self.removableCatalog = list(
             self.catalog.search(query)
@@ -124,7 +124,7 @@ class ls:
         if len(data) != 0:
             return (
                 data,
-                "Hit enter to see more or press esc to exit",
+                "",
             )  # includes array from which we want to print, and helpful message
         else:
             return (

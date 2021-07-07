@@ -1,5 +1,5 @@
-from pynput import keyboard
-from pynput.keyboard import Key, Controller
+# from pynput import keyboard
+# from pynput.keyboard import Key, Controller
 
 from databroker_ls.ls import ls
 
@@ -45,21 +45,21 @@ def format_printing(data, object):
         print(data[1])  # reminds user of what to do next
 
 
-def on_press(key, object):
-    """
-    Handle key presses: we only care about escape and enter/space
-    """
-    if key == keyboard.Key.esc:
-        # Stop listener and get out of the loading window, back to regular terminal
-        print("exiting...")
-        return False
-    else:
-        if key == keyboard.Key.enter or key == keyboard.Key.space:
-            # load the next iteration of the catalog
-            data = (
-                object.myOwnPrinting()
-            )  # hold the current array of runs without recalling it
-            return format_printing(data, object)
+# def on_press(key, object):
+#     """
+#     Handle key presses: we only care about escape and enter/space
+#     """
+#     if key == keyboard.Key.esc:
+#         # Stop listener and get out of the loading window, back to regular terminal
+#         print("exiting...")
+#         return False
+#     else:
+#         if key == keyboard.Key.enter or key == keyboard.Key.space:
+#             # load the next iteration of the catalog
+#             data = (
+#                 object.myOwnPrinting()
+#             )  # hold the current array of runs without recalling it
+#             return format_printing(data, object)
 
 
 def check_for_yaml(filename):
@@ -79,7 +79,9 @@ def check_for_yaml(filename):
     else:  # even if it does exist, we need it to have a beamline at the key "catalog_name"
         with open(filename, "r") as f:  # open the yaml file we now know exists
             documents = yaml.full_load(f)  # load the contents
+            print(documents)
             if documents is not None:
+                print("things")
                 for key, value in documents.items():
                     if (
                         key == "catalog_name"
@@ -166,10 +168,10 @@ def main():
     )  # first time we access data (no user actions necessary after command)
     format_printing(data, object)
     # Collect events until released
-    with keyboard.Listener(
-        on_press=lambda event: on_press(event, object=object)
-    ) as listener:
-        listener.join()  # will only join back up with the terminal when we return False
+    # with keyboard.Listener(
+    #     on_press=lambda event: on_press(event, object=object)
+    # ) as listener:
+    #     listener.join()  # will only join back up with the terminal when we return False
 
 
 if __name__ == "__main__":
