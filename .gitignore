@@ -84,3 +84,4 @@ target/
 #catalog configuration
 conf_catalog.yml
 non_existent_file.yml
+test.yml
