@@ -11,7 +11,7 @@ import uuid
 import os
 from pathlib import Path
 import numpy as np
-from IPython import get_ipython
+# from IPython import get_ipython
 
 # Set up a RunEngine and use metadata backed by a sqlite file.
 from bluesky import RunEngine
@@ -41,9 +41,9 @@ pbar_manager = ProgressBarManager()
 RE.waiting_hook = pbar_manager
 
 # Register bluesky IPython magics.
-from bluesky.magics import BlueskyMagics
-
-get_ipython().register_magics(BlueskyMagics)
+# from bluesky.magics import BlueskyMagics
+#
+# get_ipython().register_magics(BlueskyMagics)
 
 # Set up the BestEffortCallback.
 from bluesky.callbacks.best_effort import BestEffortCallback
