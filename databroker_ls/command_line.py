@@ -18,7 +18,7 @@ This file is a script to make the arguments from args.get_args() affect the prin
 """
 
 
-file = "../conf_catalog.yml"
+file = "./conf_catalog.yml"
 
 
 def format_printing(data, object):
@@ -61,6 +61,8 @@ def check_for_yaml(filename):
         open(filename, "x+")
         return False, empty  # false means the yaml does not meet our requirements
     else:  # even if it does exist, we need it to have a beamline at the key "catalog_name"
+        absolute_path = os.path.abspath(filename)
+        print("Full path: " + absolute_path)
         with open(filename, "r") as f:  # open the yaml file we now know exists
             documents = yaml.full_load(f)  # load the contents
             if documents is not None:
