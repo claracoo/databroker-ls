@@ -1,5 +1,5 @@
 # from pynput import keyboard
-# from pynput.keyboard import Key, Controller
+# from pynput.keyboard import Key, Controller #  these are necessary for the interactive interface
 
 from databroker_ls.ls import ls
 
@@ -14,7 +14,7 @@ from os import path
 import yaml
 
 """
-This file is a script to actually make the lines load dynamically
+This file is a script to make the arguments from args.get_args() affect the printing
 """
 
 
@@ -53,6 +53,7 @@ def check_for_yaml(filename):
         2. the file contains the key 'catalog_name'
         3. the correct key name is matched with an actual catalog
     """
+
     empty = ""  # we want to have 2 arguments returned for consistency in case we check check_for_yaml()[1], so this empty string acts as a safety, so it does not segfault
     if not path.exists(
         filename
@@ -81,12 +82,13 @@ def check_for_yaml(filename):
 
 def get_current_catalog(filename):
     """
-        This function sets and/or gets the catalog the user wants to use.
-        If the user manually enters one by using '--catalog [some catalog name]',
-        then we can set that as the catalog. We then check if they already have a
-        default set. If they do, we use that. The last option is to ask the user
-        to set their default.
+    This function sets and/or gets the catalog the user wants to use.
+    If the user manually enters one by using '--catalog [some catalog name]',
+    then we can set that as the catalog. We then check if they already have a
+    default set. If they do, we use that. The last option is to ask the user
+    to set their default.
     """
+
     currentCatalog = (
         get_args().catalog
     )  # if they manually set a catalog that should have priority
@@ -103,10 +105,11 @@ def get_current_catalog(filename):
             ]  # we set the catalog (and the backup listing in the catalog class) to be the listed default from the yaml file
         else:  # if either the file does not exist, or the "catalog_name" key is empty, we need to ask the user to set this
             with open(filename) as f:  # open yaml file
-                specifiedCatalog.query_for_catalog(default=list(catalog)[0])  # this runs the script from catalog.py to prompt the user for their default choice
+                specifiedCatalog.query_for_catalog(
+                    default=list(catalog)[0]
+                )  # this runs the script from catalog.py to prompt the user for their default choice
                 specifiedCatalog.change_default_catalog(
-                    filename,
-                    specifiedCatalog.currentCatalog
+                    filename, specifiedCatalog.currentCatalog
                 )  # update the yaml file to house the default
                 currentCatalog = (
                     specifiedCatalog.currentCatalog
@@ -115,38 +118,73 @@ def get_current_catalog(filename):
 
 
 def set_default(filename):
-    changing_catalog = get_args().updateDefault  # get what is stored in the argument for updateDefault
-    if changing_catalog in list(catalog):  # don't update it to a catalog that we cannot access
+    """
+    This function will be called when the user uses the:
+    '--updateDefault' command line argument.
+    It verifies that this is an accessible catalog and that they at some point picked a catalog.
+    """
+
+    changing_catalog = (
+        get_args().updateDefault
+    )  # get what is stored in the argument for updateDefault
+    if changing_catalog in list(
+        catalog
+    ):  # don't update it to a catalog that we cannot access
         specifiedCatalog = SpecifiedCatalog()  # get the catalog class
         if not path.exists(
-                filename
+            filename
         ):  # if the file does not exist at all, we will want to create it
             open(filename, "x+")  # create it
-        specifiedCatalog.change_default_catalog(filename, changing_catalog)  # change the catalog in the conf file
+        specifiedCatalog.change_default_catalog(
+            filename, changing_catalog
+        )  # change the catalog in the conf file
     else:
         with open(filename, "r") as f:  # open the yaml file we now know exists
             documents = yaml.full_load(f)  # load the contents
             # explanation to the user that the catalog they picked won't work
-            print(f"\nThe specified catalog was not available. The available catalogs are: \n{list(catalog)}\nWe will load data from the current default catalog: \n {documents['catalog_name']}\n")
+            print(
+                f"\nThe specified catalog was not available. The available catalogs are: \n{list(catalog)}\nWe will load data from the current default catalog: \n {documents['catalog_name']}\n"
+            )
+
+
+def get_number():
+    """
+    This function finds how many entries should be shown.
+    The negative indicates if this should be at the beginning or end.
+    """
+
+    number = 0  # this is used in the ls class for how many runs should be shown. If it stays at 0, all runs will be shown
+    if get_args().number != 10:  # default is 10
+        number = (
+            get_args().number
+        )  # if not the default, give them the head with that many shown
+    if get_args().head:  # if they only want to see the head (most recent)
+        number = (
+            get_args().number
+        )  # we will give the ls class the positive number (default is 10 but, they can specify)
+    if get_args().tail:  # if they only want to see the tail (most distant)
+        number = (
+            -1 * get_args().number
+        )  # we will give the ls class the negative number (default is -10 but, they can specify)
+    return number
 
 
 def main():
-    if get_args().updateDefault:  # if this argument is there, we need to update the default catalog
+    if (
+        get_args().updateDefault
+    ):  # if this argument is there, we need to update the default catalog
         set_default(file)
     currentCatalog = get_current_catalog(
         file
     )  # get the catalog, either entered, default, or prompt for new default
-    print(f"Loading the \'{currentCatalog}\' Catalog...")  # remind the user what the current catalog they're using is
-    number = 0  # this is used in the ls class for how many runs should be shown. If it stays at 0, all runs will be shown
-    if get_args().head:  # if they only want to see the head (most recent)
-        number = get_args().number  # we will give the ls class the positive number (default is 10 but, they can specify)
-    if get_args().tail:  # if they only want to see the tail (most distant)
-        number = -1 * get_args().number  # we will give the ls class the negative number (default is -10 but, they can specify)
+    print(
+        f"Loading the '{currentCatalog}' Catalog..."
+    )  # remind the user what the current catalog they're using is
     object = ls(
         catalog=catalog[currentCatalog],  # default or specified
         fullUID=get_args().all,  # special case where we want to see the whole id
         reverse=get_args().reverse,  # puts them in reverse order
-        number=number,  # tells us how many and if at the end, beginning or all of them
+        number=get_number(),  # tells us how many and if at the end, beginning or all of them
     )  # instantiate new ls object
     print("     Starting Time          Scan ID      UUID")  # titles for our columns
     data = (
@@ -154,6 +192,3 @@ def main():
     )  # first time we access data (no user actions necessary after command)
     format_printing(data, object)
 
-
-if __name__ == "__main__":
-    main()

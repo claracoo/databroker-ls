@@ -45,7 +45,7 @@ Some Suggestions:
 
 pynput:
 
-``pip install pynput``
+``python3 -m pip install -U scikit-image``
 
 databroker:
 

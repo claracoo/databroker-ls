@@ -31,7 +31,9 @@ class SpecifiedCatalog:
             raise ValueError("invalid default answer: '%s'" % default)
         while True:  # until the user makes an action, we should be stuck at this prompt
             sys.stdout.write(prompt)  # send user the situation
-            choice = input().replace('"', "").replace("'", "").replace(" ", "").strip()  # normalize their input
+            choice = (
+                input().replace('"', "").replace("'", "").replace(" ", "").strip()
+            )  # normalize their input
             if (
                 choice == ""
             ):  # if they hit enter and put no input, give them the default
@@ -57,9 +59,9 @@ class SpecifiedCatalog:
 
     def change_default_catalog(self, filename, new_catalog):
         """
-            This function puts the key value pair in the yml file.
-            This should be of the form:
-                'catalog_name': [SOME CATALOG]
+        This function puts the key value pair in the yml file.
+        This should be of the form:
+            'catalog_name': [SOME CATALOG]
         """
 
         data = {"catalog_name": new_catalog}  # set up the key value pair

@@ -15,6 +15,7 @@ import databroker
 from databroker_ls.ls import ls
 
 from databroker_ls.catalog import SpecifiedCatalog
+from databroker_ls import command_line
 from databroker_ls.command_line import check_for_yaml, get_current_catalog
 import yaml
 
@@ -24,7 +25,7 @@ from random import randint, choice, sample
 import string
 
 catalog = databroker.v2.temp()
-prg = "/Users/claracook/Desktop/test/databroker-ls/databroker_ls/ls.py"
+prg = "/Users/claracook/Desktop/test/databroker-ls/databroker_ls/command_line.py"
 
 # --------------------------------------------------
 def test_runnable():
@@ -82,11 +83,17 @@ def test_place_data():
 def test_check_for_yaml():
     filename = "../conf_catalog.yml"
     if path.exists(filename):
-        assert check_for_yaml(filename)[0] is True  # this should work because it is already set up on my machine
+        assert (
+            check_for_yaml(filename)[0] is True
+        )  # this should work because it is already set up on my machine
         assert check_for_yaml(filename)[1] in list(databroker.catalog)
     filename = "../non_existent_file.yml"
-    assert check_for_yaml(filename)[0] is False  # this does not yet exist, but will be created here
-    assert check_for_yaml(filename)[0] is False  # just created but bad formatting (makefile will remove for next test run)
+    assert (
+        check_for_yaml(filename)[0] is False
+    )  # this does not yet exist, but will be created here
+    assert (
+        check_for_yaml(filename)[0] is False
+    )  # just created but bad formatting (makefile will remove for next test run)
 
     # check to make sure if the file exists but has the wrong things
     data = {"stupid": "stupid"}
@@ -107,6 +114,29 @@ def test_check_for_yaml():
     assert check_for_yaml(filename)[0] is False
 
 
+# --------------------------------------------------
+# def test_more_than_two():
+#     """more than two items"""
+#
+#     arg = '"--head"'
+#     out = getoutput(f'{prg} {arg}')
+#     print(out)
+#     expected = ("""
+#                   2021-06-24 18:48:22     64366     9e36935f\n
+#                   2021-06-24 18:41:37     42085     c5b4ca9b\n
+#                   2021-06-24 18:28:41     80051     52ac7036\n
+#                   2021-06-24 18:28:22     97147     b59f9df4\n
+#                   2021-06-24 18:25:56     None      15ec4bb4\n
+#                   2021-06-24 18:25:30     None      7657409f\n
+#                   2021-06-24 18:24:14     None      f213bcf6\n
+#                   2020-03-09 00:44:03     23726     12a63104\n
+#                   2020-03-07 14:17:40     23497     4a794c63\n
+#                   2020-03-07 14:06:06     23496     30ba1323\n
+#
+#                 """)
+#     assert out.strip() == expected
+
+
 def test_change_default_catalog():
     filename = "./test.yml"
     open(filename, "x+")
@@ -119,5 +149,3 @@ def test_change_default_catalog():
     with open(filename, "r") as f:  # open the yaml file we now know exists
         documents = yaml.full_load(f)  # load the contents
         assert documents["catalog_name"] == "bluesky-tutorial-RSOXS"
-
-

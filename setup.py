@@ -59,7 +59,7 @@ setup(
     package_data={
         "databroker_ls": [
             "db-snek = databroker_ls.snek.py",
-            "db-ls = databroker_ls.command_line.py"
+            "db-ls = databroker_ls.main.py"
             # When adding files here, remember to update MANIFEST.in as well,
             # or else they will not be included in the distribution on PyPI!
             # 'path/to/data_file',

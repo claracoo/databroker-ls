@@ -81,11 +81,14 @@ class ls:
                 self.removableCatalog[k][:8]: ((-1) * k) - 1
                 for k in range(len(self.removableCatalog))
             }
-        if number < 0:  # if the user wants to see the tail (num is negative and defaulted to -10)
+        if (
+            number < 0
+        ):  # if the user wants to see the tail (num is negative and defaulted to -10)
             self.removableCatalog = self.removableCatalog[number:]
-        if number > 0:  # if the user wants to see the head (num is negative and defaulted to 10)
+        if (
+            number > 0
+        ):  # if the user wants to see the head (num is negative and defaulted to 10)
             self.removableCatalog = self.removableCatalog[:number]
-
 
     def toReadableDate(self, linuxtime):
         """Linux time to human readable date and time"""
