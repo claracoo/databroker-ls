@@ -10,7 +10,6 @@ from databroker_ls.catalog import SpecifiedCatalog
 
 import os.path
 from os import path
-
 import yaml
 
 """
@@ -161,11 +160,11 @@ def get_number():
         )  # if not the default, give them the head with that many shown
     if get_args().head:  # if they only want to see the head (most recent)
         number = (
-            get_args().number
+            abs(get_args().number)
         )  # we will give the ls class the positive number (default is 10 but, they can specify)
     if get_args().tail:  # if they only want to see the tail (most distant)
         number = (
-            -1 * get_args().number
+            -1 * abs(get_args().number)
         )  # we will give the ls class the negative number (default is -10 but, they can specify)
     return number
 

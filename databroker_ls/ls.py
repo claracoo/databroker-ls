@@ -65,30 +65,40 @@ class ls:
             for x in range(len(self.removableCatalog))
         }
         if self.reverse:
-            self.removableCatalog = list(
-                x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1])
-            )
+            if (
+                    number < 0
+            ):  # if the user wants to see the tail (num is negative and defaulted to -10)
+                self.removableCatalog = list(
+                    x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1], reverse=True)[number:]
+                )
+            if (
+                    number > 0
+            ):  # if the user wants to see the head (num is negative and defaulted to 10)
+                self.removableCatalog = list(
+                    x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1], reverse=True)[:number]
+                )
+            self.removableCatalog.reverse()
             self.UUIDtoIndex = {
                 self.removableCatalog[k][:8]: (-1) * (len(self.removableCatalog) - k)
                 for k in range(len(self.removableCatalog))
             }
         else:
-            self.removableCatalog = list(
-                x[0]
-                for x in sorted(UUIDtoTime.items(), key=lambda x: x[1], reverse=True)
-            )
+            if (
+                    number < 0
+            ):  # if the user wants to see the tail (num is negative and defaulted to -10)
+                self.removableCatalog = list(
+                    x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1], reverse=True)[number:]
+                )
+            if (
+                    number > 0
+            ):  # if the user wants to see the head (num is negative and defaulted to 10)
+                self.removableCatalog = list(
+                    x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1], reverse=True)[:number]
+                )
             self.UUIDtoIndex = {
                 self.removableCatalog[k][:8]: ((-1) * k) - 1
                 for k in range(len(self.removableCatalog))
             }
-        if (
-            number < 0
-        ):  # if the user wants to see the tail (num is negative and defaulted to -10)
-            self.removableCatalog = self.removableCatalog[number:]
-        if (
-            number > 0
-        ):  # if the user wants to see the head (num is negative and defaulted to 10)
-            self.removableCatalog = self.removableCatalog[:number]
 
     def toReadableDate(self, linuxtime):
         """Linux time to human readable date and time"""
