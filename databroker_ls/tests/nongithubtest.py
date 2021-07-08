@@ -34,6 +34,18 @@ def test_exists():
 
 
 # --------------------------------------------------
+def test_head():
+    """more than two items"""
+
+    arg = '"--head"'
+    out = getoutput(f'db-ls --head')
+    print(out)
+    expected = ("""Loading the 'bluesky-tutorial-RSOXS' Catalog...\n     Starting Time          Scan ID      UUID\n      2019-11-17 04:28:56     6959     777b44ae""")
+    print(expected)
+    assert out.strip() == expected
+
+
+# --------------------------------------------------
 def test_query_for_catalog():
     specifiedCatalog = SpecifiedCatalog()
     expected = "bluesky-tutorial-BMM"
