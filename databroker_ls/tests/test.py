@@ -25,7 +25,7 @@ from random import randint, choice, sample
 import string
 
 catalog = databroker.v2.temp()
-prg = "/Users/claracook/Desktop/test/databroker-ls/databroker_ls/command_line.py"
+prg = "./main.py"
 
 # --------------------------------------------------
 def test_runnable():
@@ -115,26 +115,15 @@ def test_check_for_yaml():
 
 
 # --------------------------------------------------
-# def test_more_than_two():
-#     """more than two items"""
-#
-#     arg = '"--head"'
-#     out = getoutput(f'{prg} {arg}')
-#     print(out)
-#     expected = ("""
-#                   2021-06-24 18:48:22     64366     9e36935f\n
-#                   2021-06-24 18:41:37     42085     c5b4ca9b\n
-#                   2021-06-24 18:28:41     80051     52ac7036\n
-#                   2021-06-24 18:28:22     97147     b59f9df4\n
-#                   2021-06-24 18:25:56     None      15ec4bb4\n
-#                   2021-06-24 18:25:30     None      7657409f\n
-#                   2021-06-24 18:24:14     None      f213bcf6\n
-#                   2020-03-09 00:44:03     23726     12a63104\n
-#                   2020-03-07 14:17:40     23497     4a794c63\n
-#                   2020-03-07 14:06:06     23496     30ba1323\n
-#
-#                 """)
-#     assert out.strip() == expected
+def test_more_than_two():
+    """more than two items"""
+
+    arg = '"--head"'
+    out = getoutput(f'db-ls --head')
+    print(out)
+    expected = ("""Loading the 'bluesky-tutorial-RSOXS' Catalog...\n     Starting Time          Scan ID      UUID\n      2019-11-17 04:28:56     6959     777b44ae""")
+    print(expected)
+    assert out.strip() == expected
 
 
 def test_change_default_catalog():

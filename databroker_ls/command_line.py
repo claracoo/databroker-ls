@@ -62,7 +62,6 @@ def check_for_yaml(filename):
         return False, empty  # false means the yaml does not meet our requirements
     else:  # even if it does exist, we need it to have a beamline at the key "catalog_name"
         absolute_path = os.path.abspath(filename)
-        print("Full path: " + absolute_path)
         with open(filename, "r") as f:  # open the yaml file we now know exists
             documents = yaml.full_load(f)  # load the contents
             if documents is not None:
@@ -194,3 +193,6 @@ def main():
     )  # first time we access data (no user actions necessary after command)
     format_printing(data, object)
 
+
+if __name__ == "__main__":
+    main()
