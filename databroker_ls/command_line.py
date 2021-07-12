@@ -151,12 +151,12 @@ def get_number():
             get_args().number
         )  # if not the default, give them the head with that many shown
     if get_args().head:  # if they only want to see the head (most recent)
-        number = (
-            abs(get_args().number)
+        number = abs(
+            get_args().number
         )  # we will give the ls class the positive number (default is 10 but, they can specify)
     if get_args().tail:  # if they only want to see the tail (most distant)
-        number = (
-            -1 * abs(get_args().number)
+        number = -1 * abs(
+            get_args().number
         )  # we will give the ls class the negative number (default is -10 but, they can specify)
     return number
 

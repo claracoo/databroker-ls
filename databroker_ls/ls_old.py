@@ -66,16 +66,22 @@ class ls_old:
         }
         if self.reverse:
             if (
-                    number < 0
+                number < 0
             ):  # if the user wants to see the tail (num is negative and defaulted to -10)
                 self.removableCatalog = list(
-                    x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1], reverse=True)[number:]
+                    x[0]
+                    for x in sorted(
+                        UUIDtoTime.items(), key=lambda x: x[1], reverse=True
+                    )[number:]
                 )
             if (
-                    number > 0
+                number > 0
             ):  # if the user wants to see the head (num is negative and defaulted to 10)
                 self.removableCatalog = list(
-                    x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1], reverse=True)[:number]
+                    x[0]
+                    for x in sorted(
+                        UUIDtoTime.items(), key=lambda x: x[1], reverse=True
+                    )[:number]
                 )
             self.removableCatalog.reverse()
             self.UUIDtoIndex = {
@@ -84,16 +90,22 @@ class ls_old:
             }
         else:
             if (
-                    number < 0
+                number < 0
             ):  # if the user wants to see the tail (num is negative and defaulted to -10)
                 self.removableCatalog = list(
-                    x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1], reverse=True)[number:]
+                    x[0]
+                    for x in sorted(
+                        UUIDtoTime.items(), key=lambda x: x[1], reverse=True
+                    )[number:]
                 )
             if (
-                    number > 0
+                number > 0
             ):  # if the user wants to see the head (num is negative and defaulted to 10)
                 self.removableCatalog = list(
-                    x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1], reverse=True)[:number]
+                    x[0]
+                    for x in sorted(
+                        UUIDtoTime.items(), key=lambda x: x[1], reverse=True
+                    )[:number]
                 )
             self.UUIDtoIndex = {
                 self.removableCatalog[k][:8]: ((-1) * k) - 1

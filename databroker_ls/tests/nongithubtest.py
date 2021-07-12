@@ -38,9 +38,9 @@ def test_head():
     """more than two items"""
 
     arg = '"--head"'
-    out = getoutput(f'db-ls --head')
+    out = getoutput(f"db-ls --head")
     print(out)
-    expected = ("""Loading the 'bluesky-tutorial-RSOXS' Catalog...\n     Starting Time          Scan ID      UUID\n      2019-11-17 04:28:56     6959     777b44ae""")
+    expected = """Loading the 'bluesky-tutorial-RSOXS' Catalog...\n     Starting Time          Scan ID      UUID\n      2019-11-17 04:28:56     6959     777b44ae"""
     print(expected)
     assert out.strip() == expected
 
@@ -53,39 +53,39 @@ def arg_testing(prompt):
 
 
 def test_head():
-    prompt = f'db-ls --head --catalog bluesky-tutorial-RSOXS'
+    prompt = f"db-ls --head --catalog bluesky-tutorial-RSOXS"
     expected = """Loading the 'bluesky-tutorial-RSOXS' Catalog...\n     Starting Time          Scan ID      UUID\n      2019-11-17 04:28:56     6959     777b44ae"""
     assert arg_testing(prompt) == expected
-    prompt = f'db-ls --head --catalog bluesky-tutorial-RSOXS --reverse'
+    prompt = f"db-ls --head --catalog bluesky-tutorial-RSOXS --reverse"
     expected = """Loading the 'bluesky-tutorial-RSOXS' Catalog...\n     Starting Time          Scan ID      UUID\n      2019-11-17 04:28:56     6959     777b44ae"""
     assert arg_testing(prompt) == expected
-    prompt = f'db-ls --head --catalog bluesky-tutorial-BMM --number 2'
+    prompt = f"db-ls --head --catalog bluesky-tutorial-BMM --number 2"
     expected = """Loading the 'bluesky-tutorial-BMM' Catalog...\n     Starting Time          Scan ID      UUID\n      2021-06-24 18:48:22     64366     9e36935f\n      2021-06-24 18:41:37     42085     c5b4ca9b"""
     assert arg_testing(prompt) == expected
-    prompt = f'db-ls --head --catalog bluesky-tutorial-BMM --number -2'
+    prompt = f"db-ls --head --catalog bluesky-tutorial-BMM --number -2"
     assert arg_testing(prompt) == expected
-    prompt = f'db-ls --catalog bluesky-tutorial-BMM --number 2'
+    prompt = f"db-ls --catalog bluesky-tutorial-BMM --number 2"
     assert arg_testing(prompt) == expected
-    prompt = f'db-ls --catalog bluesky-tutorial-BMM --number 2 --reverse'
+    prompt = f"db-ls --catalog bluesky-tutorial-BMM --number 2 --reverse"
     expected = """Loading the 'bluesky-tutorial-BMM' Catalog...\n     Starting Time          Scan ID      UUID\n      2021-06-24 18:41:37     42085     c5b4ca9b\n      2021-06-24 18:48:22     64366     9e36935f"""
     assert arg_testing(prompt) == expected
 
 
 def test_tail():
-    prompt = f'db-ls --tail --catalog bluesky-tutorial-RSOXS'
+    prompt = f"db-ls --tail --catalog bluesky-tutorial-RSOXS"
     expected = """Loading the 'bluesky-tutorial-RSOXS' Catalog...\n     Starting Time          Scan ID      UUID\n      2019-11-17 04:28:56     6959     777b44ae"""
     assert arg_testing(prompt) == expected
-    prompt = f'db-ls --tail --catalog bluesky-tutorial-RSOXS --head'
+    prompt = f"db-ls --tail --catalog bluesky-tutorial-RSOXS --head"
     expected = """Loading the 'bluesky-tutorial-RSOXS' Catalog...\n     Starting Time          Scan ID      UUID\n      2019-11-17 04:28:56     6959     777b44ae"""
     assert arg_testing(prompt) == expected
-    prompt = f'db-ls --tail --catalog bluesky-tutorial-BMM --number 2'
+    prompt = f"db-ls --tail --catalog bluesky-tutorial-BMM --number 2"
     expected = """Loading the 'bluesky-tutorial-BMM' Catalog...\n     Starting Time          Scan ID      UUID\n      2020-03-03 04:33:05     22524     51f9eb19\n      2020-03-03 04:18:06     22521     f8c83910"""
     assert arg_testing(prompt) == expected
-    prompt = f'db-ls --tail --catalog bluesky-tutorial-BMM --number -2'
+    prompt = f"db-ls --tail --catalog bluesky-tutorial-BMM --number -2"
     assert arg_testing(prompt) == expected
-    prompt = f'db-ls --catalog bluesky-tutorial-BMM --number -2'
+    prompt = f"db-ls --catalog bluesky-tutorial-BMM --number -2"
     assert arg_testing(prompt) == expected
-    prompt = f'db-ls --catalog bluesky-tutorial-BMM --number -2 --reverse'
+    prompt = f"db-ls --catalog bluesky-tutorial-BMM --number -2 --reverse"
     expected = """Loading the 'bluesky-tutorial-BMM' Catalog...\n     Starting Time          Scan ID      UUID\n      2020-03-03 04:18:06     22521     f8c83910\n      2020-03-03 04:33:05     22524     51f9eb19"""
     assert arg_testing(prompt) == expected
 

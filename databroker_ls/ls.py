@@ -31,7 +31,7 @@ from databroker._drivers.msgpack import BlueskyMsgpackCatalog
 
 class ls:
     """
-        This class gets the data that we are going to list out.
+    This class gets the data that we are going to list out.
     """
 
     uuids = []  # list of the uuids as strings, will be ordered newest to oldest
@@ -47,14 +47,18 @@ class ls:
         self.catalog = catalog
         for i in range(len(list(catalog))):  # setup for the uuids and the UUIDtoIndex
             index = -1 * (i + 1)  # how we get the backwards index
-            uuid = catalog[index].metadata["start"].get("uid", "")[:self.uuidLen]  # the uuid condensed down to our desired length
+            uuid = (
+                catalog[index].metadata["start"].get("uid", "")[: self.uuidLen]
+            )  # the uuid condensed down to our desired length
             self.uuids.append(uuid)
             self.UUIDtoIndex[uuid] = index
-        if fullUID: # we get the whole UUID
+        if fullUID:  # we get the whole UUID
             self.uuidLen = 36
         self.reverse = reverse
         self.number = number
-        if number < 0 and abs(number) >= len(list(catalog)): #  if the catalog is shorter than the number the user requested, we just show the whole catalog
+        if number < 0 and abs(number) >= len(
+            list(catalog)
+        ):  #  if the catalog is shorter than the number the user requested, we just show the whole catalog
             self.number = 0
 
     def to_readable_date(self, linuxtime):
@@ -63,10 +67,12 @@ class ls:
 
     def organize_data(self):
         """
-            This function takes the uuids loaded in the init function and picks out what we want to list
+        This function takes the uuids loaded in the init function and picks out what we want to list
         """
         howManyEntries = len(list(self.catalog))  # assume we want every entry
-        if self.number != 0:  # if the user specifies that they don't want every entry, we update how many we will see
+        if (
+            self.number != 0
+        ):  # if the user specifies that they don't want every entry, we update how many we will see
             howManyEntries = abs(self.number)
         data = []
         i = 0
@@ -74,14 +80,24 @@ class ls:
             if i < howManyEntries:  # limit it to how many entries the user wants to see
                 counter = index  # normal
                 if self.number < 0:
-                    counter = howManyEntries - (len(list(self.catalog)) + abs(index))  # reverse
-                data.append([
-                    self.to_readable_date(
-                        self.catalog[counter].metadata["start"].get("time", "None               ")
-                    ),  # make the data something a human could understand
-                    self.catalog[counter].metadata["start"].get("scan_id", "None "),
-                    (self.catalog[counter].metadata["start"].get("uid", "None    "))[:self.uuidLen],
-                ])
+                    counter = howManyEntries - (
+                        len(list(self.catalog)) + abs(index)
+                    )  # reverse
+                data.append(
+                    [
+                        self.to_readable_date(
+                            self.catalog[counter]
+                            .metadata["start"]
+                            .get("time", "None               ")
+                        ),  # make the data something a human could understand
+                        self.catalog[counter].metadata["start"].get("scan_id", "None "),
+                        (
+                            self.catalog[counter]
+                            .metadata["start"]
+                            .get("uid", "None    ")
+                        )[: self.uuidLen],
+                    ]
+                )
             i += 1
         return data
 
@@ -90,5 +106,3 @@ class ls:
         if self.reverse:
             data = data[::-1]  # reverse it
         return data
-
-
