@@ -65,9 +65,9 @@ def test_head():
     arg_testing(prompt, expected)
     prompt = f'db-ls --catalog bluesky-tutorial-BMM --number 2'
     arg_testing(prompt, expected)
-    # prompt = f'db-ls --catalog bluesky-tutorial-BMM --number 2 --reverse'
-    # expected = """Loading the 'bluesky-tutorial-BMM' Catalog...\n     Starting Time          Scan ID      UUID\n      2021-06-24 18:41:37     42085     c5b4ca9b\n      2021-06-24 18:48:22     64366     9e36935f"""
-    # arg_testing(prompt, expected)
+    prompt = f'db-ls --catalog bluesky-tutorial-BMM --number 2 --reverse'
+    expected = """Loading the 'bluesky-tutorial-BMM' Catalog...\n     Starting Time          Scan ID      UUID\n      2021-06-24 18:41:37     42085     c5b4ca9b\n      2021-06-24 18:48:22     64366     9e36935f"""
+    arg_testing(prompt, expected)
 
 
 def test_tail():
@@ -81,9 +81,9 @@ def test_tail():
     arg_testing(prompt, expected)
     prompt = f'db-ls --catalog bluesky-tutorial-BMM --number -2'
     arg_testing(prompt, expected)
-    # prompt = f'db-ls --catalog bluesky-tutorial-BMM --number -2 --reverse'
-    # expected = """Loading the 'bluesky-tutorial-BMM' Catalog...\n     Starting Time          Scan ID      UUID\n      2020-03-03 04:18:06     22521     f8c83910\n      2020-03-03 04:33:05     22524     51f9eb19"""
-    # arg_testing(prompt, expected)
+    prompt = f'db-ls --catalog bluesky-tutorial-BMM --number -2 --reverse'
+    expected = """Loading the 'bluesky-tutorial-BMM' Catalog...\n     Starting Time          Scan ID      UUID\n      2020-03-03 04:18:06     22521     f8c83910\n      2020-03-03 04:33:05     22524     51f9eb19"""
+    arg_testing(prompt, expected)
 
 
 # --------------------------------------------------

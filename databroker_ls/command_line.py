@@ -27,21 +27,13 @@ def format_printing(data, object):
     so that we can gather the data in a different point
     """
 
-    for i in range(len(data[0])):
+    for i in range(len(data)):
         index = "     "
         if get_args().index:
             index = "{message: <{width}}".format(
-                message=object.UUIDtoIndex[data[0][i][2][:8]], width=5
+                message=object.UUIDtoIndex[data[i][2][:8]], width=5
             )
-        print(index, data[0][i][0], "   ", data[0][i][1], "   ", data[0][i][2])
-    if data[1] == "exit":
-        # this was from qt.py, means that the data array is empty
-        print(
-            "No more data in this catalog, exiting..."
-        )  # dot dot dot is important because there is a wait time
-        return False  # this kicks us out of the listing state
-    else:
-        print(data[1])  # reminds user of what to do next
+        print(index, data[i][0], "   ", data[i][1], "   ", data[i][2])
 
 
 def check_for_yaml(filename):
@@ -188,7 +180,7 @@ def main():
     )  # instantiate new ls object
     print("     Starting Time          Scan ID      UUID")  # titles for our columns
     data = (
-        object.myOwnPrinting()
+        object.output_data()
     )  # first time we access data (no user actions necessary after command)
     format_printing(data, object)
 

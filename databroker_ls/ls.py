@@ -30,115 +30,65 @@ from databroker._drivers.msgpack import BlueskyMsgpackCatalog
 
 
 class ls:
-    """This class holds the act of going from the searching the catalog to a pandas dataframe"""
+    """
+        This class gets the data that we are going to list out.
+    """
 
-    catalog = []  # particular catalog we're referencing
-    fullUID = False
-    removableCatalog = (
-        []
-    )  # the catalog's list of UUIDs will be copied in here, and then removed as they are printed
-    TIME = ""  # this is a parameter I may want to change later
-    headOrTail = 0  # how many entries get loaded in each group
-    UUIDtoIndex = {}
-    reverse = False
+    uuids = []  # list of the uuids as strings, will be ordered newest to oldest
+    catalog = catalog  # the literal catalog we pass it
+    fullID = False  # whether or not we want the whole UUID or just the first 8 chars, see self.uuidLen
+    reverse = False  # if true, data will be listed oldest to newest
+    UUIDtoIndex = {}  # the uuid (the 8 char long version) to thebackwards index
+    uuidLen = 8  # standard for uuid length
+    number = 0  # if it is 0, we will ignore it, if it is negative, we want the tail, if its posiitve we want the head
 
     def __init__(self, catalog, fullUID, reverse, number):
-        """
-        The goal is to load all UUIDs into the removableCatalog variable
-        This way, the user can load as many or as few entries as they choose
-        PROBLEM: These are unordered
-        """
-
         super().__init__()
         self.catalog = catalog
-        self.fullUID = fullUID
+        for i in range(len(list(catalog))):  # setup for the uuids and the UUIDtoIndex
+            index = -1 * (i + 1)  # how we get the backwards index
+            uuid = catalog[index].metadata["start"].get("uid", "")[:self.uuidLen]  # the uuid condensed down to our desired length
+            self.uuids.append(uuid)
+            self.UUIDtoIndex[uuid] = index
+        if fullUID: # we get the whole UUID
+            self.uuidLen = 36
         self.reverse = reverse
-        self.headOrTail = number  # if it is 0, we will ignore it, if it is negative, we want the tail, if its posiitve we want the head
-        query = TimeRange()  # when no time range is specified, it loads all entries
-        self.removableCatalog = list(
-            self.catalog.search(query)
-        )  # how all the UUIDs are loaded into removable catalog
-        UUIDtoTime = {
-            self.removableCatalog[x]: self.catalog[self.removableCatalog[x]].metadata[
-                "start"
-            ]["time"]
-            for x in range(len(self.removableCatalog))
-        }
-        if self.reverse:
-            if (
-                    number < 0
-            ):  # if the user wants to see the tail (num is negative and defaulted to -10)
-                self.removableCatalog = list(
-                    x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1], reverse=True)[number:]
-                )
-            if (
-                    number > 0
-            ):  # if the user wants to see the head (num is negative and defaulted to 10)
-                self.removableCatalog = list(
-                    x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1], reverse=True)[:number]
-                )
-            self.removableCatalog.reverse()
-            self.UUIDtoIndex = {
-                self.removableCatalog[k][:8]: (-1) * (len(self.removableCatalog) - k)
-                for k in range(len(self.removableCatalog))
-            }
-        else:
-            if (
-                    number < 0
-            ):  # if the user wants to see the tail (num is negative and defaulted to -10)
-                self.removableCatalog = list(
-                    x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1], reverse=True)[number:]
-                )
-            if (
-                    number > 0
-            ):  # if the user wants to see the head (num is negative and defaulted to 10)
-                self.removableCatalog = list(
-                    x[0] for x in sorted(UUIDtoTime.items(), key=lambda x: x[1], reverse=True)[:number]
-                )
-            self.UUIDtoIndex = {
-                self.removableCatalog[k][:8]: ((-1) * k) - 1
-                for k in range(len(self.removableCatalog))
-            }
+        self.number = number
+        if number < 0 and abs(number) >= len(list(catalog)): #  if the catalog is shorter than the number the user requested, we just show the whole catalog
+            self.number = 0
 
-    def toReadableDate(self, linuxtime):
+    def to_readable_date(self, linuxtime):
         """Linux time to human readable date and time"""
         return datetime.utcfromtimestamp(linuxtime).strftime("%Y-%m-%d %H:%M:%S")
 
-    def myOwnPrinting(self):
-        """ "Formats the array necessary to print things later"""
-        uuidLen = 8  # standard option is to only show half the uid
-        if self.fullUID:
-            uuidLen = 36
-            # if the user specifies that they want the whole thing, it is 36 chars long
-        data = [
-            [
-                self.toReadableDate(
-                    self.catalog[x].metadata["start"].get("time", "None               ")
-                ),  # make the data something a human could understand
-                self.catalog[x].metadata["start"].get("scan_id", "None "),
-                (self.catalog[x].metadata["start"].get("uid", "None    "))[:uuidLen],
-            ]
-            for x in self.removableCatalog
-        ]  # gets the time, scan_id and beginning of uid
-        if len(data) != 0:
-            return (
-                data,
-                "",
-            )  # includes array from which we want to print, and helpful message
-        else:
-            return (
-                data,
-                "exit",
-            )  # data should be empty --> allows the return type at 0 and 1 to always exist
-            # the word exit is a shorthand key term that is checked in the file command_line.py
+    def organize_data(self):
+        """
+            This function takes the uuids loaded in the init function and picks out what we want to list
+        """
+        howManyEntries = len(list(self.catalog))  # assume we want every entry
+        if self.number != 0:  # if the user specifies that they don't want every entry, we update how many we will see
+            howManyEntries = abs(self.number)
+        data = []
+        i = 0
+        for index in self.UUIDtoIndex.values():  # assume we are going thru all runs
+            if i < howManyEntries:  # limit it to how many entries the user wants to see
+                counter = index  # normal
+                if self.number < 0:
+                    counter = howManyEntries - (len(list(self.catalog)) + abs(index))  # reverse
+                data.append([
+                    self.to_readable_date(
+                        self.catalog[counter].metadata["start"].get("time", "None               ")
+                    ),  # make the data something a human could understand
+                    self.catalog[counter].metadata["start"].get("scan_id", "None "),
+                    (self.catalog[counter].metadata["start"].get("uid", "None    "))[:self.uuidLen],
+                ])
+            i += 1
+        return data
+
+    def output_data(self):
+        data = self.organize_data()  # assume not reversed
+        if self.reverse:
+            data = data[::-1]  # reverse it
+        return data
 
 
-# --------------------------------------------------
-def main():
-    """Make a jazz noise here"""
-    # object = ls(catalog["bluesky-tutorial-BMM"])  # instantiates object
-
-
-# --------------------------------------------------
-if __name__ == "__main__":
-    main()

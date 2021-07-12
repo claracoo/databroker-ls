@@ -69,9 +69,9 @@ def test_place_data():
     numDataPoints = 20
     place_data(numDataPoints)
     object = ls(catalog=catalog, fullUID=True, reverse=False, number=numDataPoints)
-    spaced = object.myOwnPrinting()[0]
+    spaced = object.output_data()
     for i in range(numDataPoints):
-        assert object.toReadableDate(
+        assert object.to_readable_date(
             catalog[spaced[i][2]].metadata["start"]["time"]
         ) == str(spaced[i][0])
         assert str(catalog[spaced[i][2]].metadata["start"]["scan_id"]) == str(
