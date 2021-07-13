@@ -22,6 +22,14 @@ def get_args():
         default=specifiedCatalog.currentCatalog,
     )
     parser.add_argument(
+        "-s",
+        "--searchKey",
+        help="search for a key in the metadata",
+        type=str,
+        dest="searchKey",
+        default="",
+    )
+    parser.add_argument(
         "-n",
         "--number",
         help="How many data points do you want to be shown in one load",

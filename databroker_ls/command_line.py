@@ -26,14 +26,13 @@ def format_printing(data, object):
     This is where the actual printing format happens,
     so that we can gather the data in a different point
     """
-
     for i in range(len(data)):
         index = "     "
         if get_args().index:
             index = "{message: <{width}}".format(
                 message=object.UUIDtoIndex[data[i][2][:8]], width=5
             )
-        print(index, data[i][0], "   ", data[i][1], "   ", data[i][2])
+        print(index, data[i][0], "   ", data[i][1], "   ", data[i][2], f"  {data[i][3]}" if data[i][3] is not None else "")
 
 
 def check_for_yaml(filename):
@@ -177,8 +176,10 @@ def main():
         fullUID=get_args().all,  # special case where we want to see the whole id
         reverse=get_args().reverse,  # puts them in reverse order
         number=get_number(),  # tells us how many and if at the end, beginning or all of them
+        searchKey=get_args().searchKey
     )  # instantiate new ls object
-    print("     Starting Time          Scan ID      UUID")  # titles for our columns
+    title = "     Starting Time          Scan ID      UUID" if get_args().searchKey == "" else f"     Starting Time          Scan ID      UUID      Search Key: {get_args().searchKey}"
+    print(title)  # titles for our columns
     data = (
         object.output_data()
     )  # first time we access data (no user actions necessary after command)
