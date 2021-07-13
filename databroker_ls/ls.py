@@ -38,9 +38,9 @@ class ls:
     catalog = catalog  # the literal catalog we pass it
     fullID = False  # whether or not we want the whole UUID or just the first 8 chars, see self.uuidLen
     reverse = False  # if true, data will be listed oldest to newest
-    UUIDtoIndex = {}  # the uuid (the 8 char long version) to thebackwards index
+    UUIDtoIndex = {}  # the uuid (the 8 char long version) to the backwards index
     uuidLen = 8  # standard for uuid length
-    number = 0  # if it is 0, we will ignore it, if it is negative, we want the tail, if its posiitve we want the head
+    number = 0  # if it is 0, we will ignore it, if it is negative, we want the tail, if its positve we want the head
 
     def __init__(self, catalog, fullUID, reverse, number):
         super().__init__()
@@ -48,7 +48,7 @@ class ls:
         for i in range(len(list(catalog))):  # setup for the uuids and the UUIDtoIndex
             index = -1 * (i + 1)  # how we get the backwards index
             uuid = (
-                catalog[index].metadata["start"].get("uid", "")[: self.uuidLen]
+                catalog[index].metadata["start"]["uid"][:self.uuidLen]
             )  # the uuid condensed down to our desired length
             self.uuids.append(uuid)
             self.UUIDtoIndex[uuid] = index
