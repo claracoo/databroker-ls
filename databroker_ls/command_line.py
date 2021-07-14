@@ -20,7 +20,7 @@ This file is a script to make the arguments from args.get_args() affect the prin
 file = "./conf_catalog.yml"
 
 
-@profile
+# @profile
 def format_printing(data, object):
 
     """
@@ -36,7 +36,7 @@ def format_printing(data, object):
         print(index, data[i][0], "   ", data[i][1], "   ", data[i][2], f"  {data[i][3]}" if data[i][3] is not None else "")
 
 
-@profile
+# @profile
 def check_for_yaml(filename):
     """ "
     This function checks if the yaml file meets our requirements
@@ -73,7 +73,7 @@ def check_for_yaml(filename):
         )  # if we reach this condition, it means the file existed but either did not have the key or the key was matched with an empty or non beamline value
 
 
-@profile
+# @profile
 def get_current_catalog(filename):
     """
     This function sets and/or gets the catalog the user wants to use.
@@ -111,7 +111,7 @@ def get_current_catalog(filename):
     return currentCatalog
 
 
-@profile
+# @profile
 def set_default(filename):
     """
     This function will be called when the user uses the:
@@ -142,7 +142,7 @@ def set_default(filename):
             )
 
 
-@profile
+# @profile
 def get_number():
     """
     This function finds how many entries should be shown.
@@ -165,7 +165,7 @@ def get_number():
     return number
 
 
-@profile
+# @profile
 def main():
     if (
         get_args().updateDefault

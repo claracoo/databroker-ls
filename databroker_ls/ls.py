@@ -28,7 +28,6 @@ import argparse
 
 from databroker._drivers.msgpack import BlueskyMsgpackCatalog
 
-
 class ls:
     """
     This class gets the data that we are going to list out.
@@ -42,16 +41,18 @@ class ls:
     uuidLen = 8  # standard for uuid length
     number = 0  # if it is 0, we will ignore it, if it is negative, we want the tail, if its positve we want the head
     searchKey = ""
+    count = 0
 
-    @profile
+    # @profile
     def __init__(self, catalog, fullUID, reverse, number, searchKey):
         super().__init__()
         self.catalog = catalog
+        print(catalog["f8c83910-4adb-4207-a465-9ff0ff0e9cd2"].metadata["start"]["uid"])
+        print(catalog["9e36935f-45c1-4694-a823-19271a00ae9d"].metadata["start"]["uid"])
         for i in range(len(list(catalog))):  # setup for the uuids and the UUIDtoIndex
+            self.count += 1
             index = -1 * (i + 1)  # how we get the backwards index
-            uuid = catalog[index].metadata["start"]["uid"][
-                : self.uuidLen
-            ]  # the uuid condensed down to our desired length
+            uuid = catalog[index].metadata["start"]["uid"][: self.uuidLen]  # the uuid condensed down to our desired length
             self.uuids.append(uuid)
             self.UUIDtoIndex[uuid] = index
         if fullUID:  # we get the whole UUID
@@ -63,12 +64,13 @@ class ls:
             list(catalog)
         ):  #  if the catalog is shorter than the number the user requested, we just show the whole catalog
             self.number = 0
+        print(self.count)
 
     def to_readable_date(self, linuxtime):
         """Linux time to human readable date and time"""
         return datetime.utcfromtimestamp(linuxtime).strftime("%Y-%m-%d %H:%M:%S")
 
-    @profile
+    # @profile
     def organize_data(self):
         """
         This function takes the uuids loaded in the init function and picks out what we want to list
@@ -109,7 +111,7 @@ class ls:
                     i += 1  # COME BACK HERE
         return data
 
-    @profile
+    # @profile
     def search_dict(self, obj, key):
         if key in obj:
             return obj[key]
@@ -119,7 +121,7 @@ class ls:
                 if item is not None:
                     return item
 
-    @profile
+    # @profile
     def output_data(self):
         data = self.organize_data()  # assume not reversed
         if self.reverse:
