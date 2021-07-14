@@ -1,6 +1,6 @@
 Timer unit: 1e-06 s
 
-Total time: 0.191977 s
+Total time: 0.18255 s
 File: /Users/claracook/Desktop/databroker-ls/databroker_ls/args.py
 Function: get_args at line 4
 
@@ -8,75 +8,75 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
      4                                           @profile
      5                                           def get_args():
-     6       141        835.0      5.9      0.4      specifiedCatalog = SpecifiedCatalog()
-     7       141      58084.0    411.9     30.3      parser = argparse.ArgumentParser()
-     8       282      10510.0     37.3      5.5      parser.add_argument(
-     9       141        106.0      0.8      0.1          "-c",
-    10       141         86.0      0.6      0.0          "--catalog",
-    11       141        104.0      0.7      0.1          help="Pass the catalog you want to list",
-    12       141        141.0      1.0      0.1          type=str,
-    13       141         98.0      0.7      0.1          dest="catalog",
-    14       141        135.0      1.0      0.1          default=specifiedCatalog.currentCatalog,
+     6       141        765.0      5.4      0.4      specifiedCatalog = SpecifiedCatalog()
+     7       141      50617.0    359.0     27.7      parser = argparse.ArgumentParser()
+     8       282       9889.0     35.1      5.4      parser.add_argument(
+     9       141        108.0      0.8      0.1          "-c",
+    10       141         82.0      0.6      0.0          "--catalog",
+    11       141        101.0      0.7      0.1          help="Pass the catalog you want to list",
+    12       141         98.0      0.7      0.1          type=str,
+    13       141         92.0      0.7      0.1          dest="catalog",
+    14       141        124.0      0.9      0.1          default=specifiedCatalog.currentCatalog,
     15                                               )
-    16       282      10338.0     36.7      5.4      parser.add_argument(
-    17       141        101.0      0.7      0.1          "-u",
-    18       141         87.0      0.6      0.0          "--updateDefault",
-    19       141         92.0      0.7      0.0          help="Change the default catalog name",
-    20       141        106.0      0.8      0.1          type=str,
-    21       141         96.0      0.7      0.1          dest="updateDefault",
-    22       141        125.0      0.9      0.1          default=specifiedCatalog.currentCatalog,
+    16       282       9060.0     32.1      5.0      parser.add_argument(
+    17       141         99.0      0.7      0.1          "-u",
+    18       141        132.0      0.9      0.1          "--updateDefault",
+    19       141         85.0      0.6      0.0          help="Change the default catalog name",
+    20       141        108.0      0.8      0.1          type=str,
+    21       141        108.0      0.8      0.1          dest="updateDefault",
+    22       141        128.0      0.9      0.1          default=specifiedCatalog.currentCatalog,
     23                                               )
-    24       282       9302.0     33.0      4.8      parser.add_argument(
-    25       141        133.0      0.9      0.1          "-s",
-    26       141         90.0      0.6      0.0          "--searchKey",
-    27       141         82.0      0.6      0.0          help="search for a key in the metadata",
-    28       141        128.0      0.9      0.1          type=str,
-    29       141         87.0      0.6      0.0          dest="searchKey",
-    30       141         88.0      0.6      0.0          default="",
+    24       282       8997.0     31.9      4.9      parser.add_argument(
+    25       141         90.0      0.6      0.0          "-s",
+    26       141         95.0      0.7      0.1          "--searchKey",
+    27       141         94.0      0.7      0.1          help="search for a key in the metadata",
+    28       141         99.0      0.7      0.1          type=str,
+    29       141         95.0      0.7      0.1          dest="searchKey",
+    30       141         90.0      0.6      0.0          default="",
     31                                               )
-    32       282       9397.0     33.3      4.9      parser.add_argument(
-    33       141        120.0      0.9      0.1          "-n",
-    34       141         89.0      0.6      0.0          "--number",
-    35       141         93.0      0.7      0.0          help="How many data points do you want to be shown in one load",
-    36       141        122.0      0.9      0.1          type=int,
-    37       141        108.0      0.8      0.1          dest="number",
-    38       141         89.0      0.6      0.0          default=10,
+    32       282       9513.0     33.7      5.2      parser.add_argument(
+    33       141         96.0      0.7      0.1          "-n",
+    34       141         79.0      0.6      0.0          "--number",
+    35       141        102.0      0.7      0.1          help="How many data points do you want to be shown in one load",
+    36       141        130.0      0.9      0.1          type=int,
+    37       141         94.0      0.7      0.1          dest="number",
+    38       141        100.0      0.7      0.1          default=10,
     39                                               )
-    40       282      10334.0     36.6      5.4      parser.add_argument(
-    41       141        103.0      0.7      0.1          "-a", "--all", action="store_true", dest="all", help="Show full UID"
+    40       282      10387.0     36.8      5.7      parser.add_argument(
+    41       141        108.0      0.8      0.1          "-a", "--all", action="store_true", dest="all", help="Show full UID"
     42                                               )
-    43       282       9947.0     35.3      5.2      parser.add_argument(
-    44       141         91.0      0.6      0.0          "-i",
-    45       141         98.0      0.7      0.1          "--index",
-    46       141         96.0      0.7      0.1          action="store_true",
-    47       141         86.0      0.6      0.0          dest="index",
-    48       141         97.0      0.7      0.1          help="Show backwards indices",
+    43       282       9741.0     34.5      5.3      parser.add_argument(
+    44       141         95.0      0.7      0.1          "-i",
+    45       141        105.0      0.7      0.1          "--index",
+    46       141         91.0      0.6      0.0          action="store_true",
+    47       141         88.0      0.6      0.0          dest="index",
+    48       141        146.0      1.0      0.1          help="Show backwards indices",
     49                                               )
-    50       282       9590.0     34.0      5.0      parser.add_argument(
-    51       141         88.0      0.6      0.0          "-r",
-    52       141        103.0      0.7      0.1          "--reverse",
-    53       141         92.0      0.7      0.0          action="store_true",
-    54       141         91.0      0.6      0.0          dest="reverse",
-    55       141         95.0      0.7      0.0          help="List the runs in reverse order (oldest to newest)",
+    50       282       9052.0     32.1      5.0      parser.add_argument(
+    51       141         98.0      0.7      0.1          "-r",
+    52       141         90.0      0.6      0.0          "--reverse",
+    53       141         87.0      0.6      0.0          action="store_true",
+    54       141        102.0      0.7      0.1          dest="reverse",
+    55       141         92.0      0.7      0.1          help="List the runs in reverse order (oldest to newest)",
     56                                               )
-    57       282       9351.0     33.2      4.9      parser.add_argument(
-    58       141        100.0      0.7      0.1          "-he",
-    59       141         87.0      0.6      0.0          "--head",
-    60       141        103.0      0.7      0.1          action="store_true",
-    61       141         94.0      0.7      0.0          dest="head",
-    62       141         96.0      0.7      0.1          help="get most recent 10 runs",
+    57       282       8999.0     31.9      4.9      parser.add_argument(
+    58       141         99.0      0.7      0.1          "-he",
+    59       141        100.0      0.7      0.1          "--head",
+    60       141         87.0      0.6      0.0          action="store_true",
+    61       141        106.0      0.8      0.1          dest="head",
+    62       141        146.0      1.0      0.1          help="get most recent 10 runs",
     63                                               )
-    64       282       9370.0     33.2      4.9      parser.add_argument(
-    65       141         96.0      0.7      0.1          "-t",
-    66       141         99.0      0.7      0.1          "--tail",
-    67       141         93.0      0.7      0.0          action="store_true",
-    68       141        102.0      0.7      0.1          dest="tail",
-    69       141        100.0      0.7      0.1          help="get most distant 10 runs",
+    64       282       9767.0     34.6      5.4      parser.add_argument(
+    65       141        100.0      0.7      0.1          "-t",
+    66       141        108.0      0.8      0.1          "--tail",
+    67       141        103.0      0.7      0.1          action="store_true",
+    68       141         96.0      0.7      0.1          dest="tail",
+    69       141        114.0      0.8      0.1          help="get most distant 10 runs",
     70                                               )
-    71       141      40221.0    285.3     21.0      args = parser.parse_args()
-    72       141        182.0      1.3      0.1      return args
+    71       141      41032.0    291.0     22.5      args = parser.parse_args()
+    72       141        141.0      1.0      0.1      return args
 
-Total time: 0.19279 s
+Total time: 0.184805 s
 File: /Users/claracook/Desktop/databroker-ls/databroker_ls/command_line.py
 Function: format_printing at line 23
 
@@ -89,299 +89,317 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
     27                                               This is where the actual printing format happens,
     28                                               so that we can gather the data in a different point
     29                                               """
-    30       131        138.0      1.1      0.1      for i in range(len(data)):
-    31       130         97.0      0.7      0.1          index = "     "
-    32       130     188460.0   1449.7     97.8          if get_args().index:
+    30       131         97.0      0.7      0.1      for i in range(len(data)):
+    31       130         61.0      0.5      0.0          index = "     "
+    32       130     180504.0   1388.5     97.7          if get_args().index:
     33                                                       index = "{message: <{width}}".format(
     34                                                           message=object.UUIDtoIndex[data[i][2][:8]], width=5
     35                                                       )
-    36       130       4095.0     31.5      2.1          print(index, data[i][0], "   ", data[i][1], "   ", data[i][2], f"  {data[i][3]}" if data[i][3] is not None else "")
+    36       260       2853.0     11.0      1.5          print(
+    37       130         52.0      0.4      0.0              index,
+    38       130        135.0      1.0      0.1              data[i][0],
+    39       130         59.0      0.5      0.0              "   ",
+    40       130        118.0      0.9      0.1              data[i][1],
+    41       130         81.0      0.6      0.0              "   ",
+    42       130         88.0      0.7      0.0              data[i][2],
+    43       130        757.0      5.8      0.4              f"  {data[i][3]}" if data[i][3] is not None else "",
+    44                                                   )
 
 Total time: 0 s
 File: /Users/claracook/Desktop/databroker-ls/databroker_ls/command_line.py
-Function: check_for_yaml at line 39
+Function: check_for_yaml at line 47
 
 Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
-    39                                           @profile
-    40                                           def check_for_yaml(filename):
-    41                                               """ "
-    42                                               This function checks if the yaml file meets our requirements
-    43                                               for using the file as our default value:
-    44                                                   1. the file exists
-    45                                                   2. the file contains the key 'catalog_name'
-    46                                                   3. the correct key name is matched with an actual catalog
-    47                                               """
-    48                                           
-    49                                               empty = ""  # we want to have 2 arguments returned for consistency in case we check check_for_yaml()[1], so this empty string acts as a safety, so it does not segfault
-    50                                               if not path.exists(
-    51                                                   filename
-    52                                               ):  # if the file does not exist at all, we will want to create it
-    53                                                   open(filename, "x+")
-    54                                                   return False, empty  # false means the yaml does not meet our requirements
-    55                                               else:  # even if it does exist, we need it to have a beamline at the key "catalog_name"
-    56                                                   absolute_path = os.path.abspath(filename)
-    57                                                   with open(filename, "r") as f:  # open the yaml file we now know exists
-    58                                                       documents = yaml.full_load(f)  # load the contents
-    59                                                       if documents is not None:
-    60                                                           for key, value in documents.items():
-    61                                                               if (
-    62                                                                   key == "catalog_name"
-    63                                                                   and documents[key] != ""
-    64                                                                   and documents[key].strip("'").strip('"') in list(catalog)
-    65                                                               ):  # if the key exists and the value is in the possible catalogs
-    66                                                                   return (
-    67                                                                       True,
-    68                                                                       value,
-    69                                                                   )  # the file does match the necessary requirements, so we return true and the current beamline
-    70                                                   return (
-    71                                                       False,
-    72                                                       empty,
-    73                                                   )  # if we reach this condition, it means the file existed but either did not have the key or the key was matched with an empty or non beamline value
+    47                                           @profile
+    48                                           def check_for_yaml(filename):
+    49                                               """ "
+    50                                               This function checks if the yaml file meets our requirements
+    51                                               for using the file as our default value:
+    52                                                   1. the file exists
+    53                                                   2. the file contains the key 'catalog_name'
+    54                                                   3. the correct key name is matched with an actual catalog
+    55                                               """
+    56                                           
+    57                                               empty = ""  # we want to have 2 arguments returned for consistency in case we check check_for_yaml()[1], so this empty string acts as a safety, so it does not segfault
+    58                                               if not path.exists(
+    59                                                   filename
+    60                                               ):  # if the file does not exist at all, we will want to create it
+    61                                                   open(filename, "x+")
+    62                                                   return False, empty  # false means the yaml does not meet our requirements
+    63                                               else:  # even if it does exist, we need it to have a beamline at the key "catalog_name"
+    64                                                   absolute_path = os.path.abspath(filename)
+    65                                                   with open(filename, "r") as f:  # open the yaml file we now know exists
+    66                                                       documents = yaml.full_load(f)  # load the contents
+    67                                                       if documents is not None:
+    68                                                           for key, value in documents.items():
+    69                                                               if (
+    70                                                                   key == "catalog_name"
+    71                                                                   and documents[key] != ""
+    72                                                                   and documents[key].strip("'").strip('"') in list(catalog)
+    73                                                               ):  # if the key exists and the value is in the possible catalogs
+    74                                                                   return (
+    75                                                                       True,
+    76                                                                       value,
+    77                                                                   )  # the file does match the necessary requirements, so we return true and the current beamline
+    78                                                   return (
+    79                                                       False,
+    80                                                       empty,
+    81                                                   )  # if we reach this condition, it means the file existed but either did not have the key or the key was matched with an empty or non beamline value
 
-Total time: 0.001116 s
+Total time: 0.00099 s
 File: /Users/claracook/Desktop/databroker-ls/databroker_ls/command_line.py
-Function: get_current_catalog at line 76
+Function: get_current_catalog at line 84
 
 Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
-    76                                           @profile
-    77                                           def get_current_catalog(filename):
-    78                                               """
-    79                                               This function sets and/or gets the catalog the user wants to use.
-    80                                               If the user manually enters one by using '--catalog [some catalog name]',
-    81                                               then we can set that as the catalog. We then check if they already have a
-    82                                               default set. If they do, we use that. The last option is to ask the user
-    83                                               to set their default.
-    84                                               """
-    85                                           
-    86         1          1.0      1.0      0.1      currentCatalog = (
-    87         1       1109.0   1109.0     99.4          get_args().catalog
-    88                                               )  # if they manually set a catalog that should have priority
-    89         1          3.0      3.0      0.3      specifiedCatalog = SpecifiedCatalog()  # just in case create a catalog class
-    90         1          1.0      1.0      0.1      if (
-    91         1          1.0      1.0      0.1          currentCatalog == ""
-    92                                               ):  # if we go to check the manually set catalog, and there is none, then we either need to use the default or prompt the user
-    93                                                   req = check_for_yaml(filename)
-    94                                                   if req[
-    95                                                       0
-    96                                                   ]:  #  if the file both exists and has something at the key "catalog_name", then we can just use this as a default
-    97                                                       currentCatalog = req[
-    98                                                           1
-    99                                                       ]  # we set the catalog (and the backup listing in the catalog class) to be the listed default from the yaml file
-   100                                                   else:  # if either the file does not exist, or the "catalog_name" key is empty, we need to ask the user to set this
-   101                                                       with open(filename) as f:  # open yaml file
-   102                                                           specifiedCatalog.query_for_catalog(
-   103                                                               default=list(catalog)[0]
-   104                                                           )  # this runs the script from catalog.py to prompt the user for their default choice
-   105                                                           specifiedCatalog.change_default_catalog(
-   106                                                               filename, specifiedCatalog.currentCatalog
-   107                                                           )  # update the yaml file to house the default
-   108                                                           currentCatalog = (
-   109                                                               specifiedCatalog.currentCatalog
-   110                                                           )  # set the catalog choice
-   111         1          1.0      1.0      0.1      return currentCatalog
+    84                                           @profile
+    85                                           def get_current_catalog(filename):
+    86                                               """
+    87                                               This function sets and/or gets the catalog the user wants to use.
+    88                                               If the user manually enters one by using '--catalog [some catalog name]',
+    89                                               then we can set that as the catalog. We then check if they already have a
+    90                                               default set. If they do, we use that. The last option is to ask the user
+    91                                               to set their default.
+    92                                               """
+    93                                           
+    94         1          0.0      0.0      0.0      currentCatalog = (
+    95         1        987.0    987.0     99.7          get_args().catalog
+    96                                               )  # if they manually set a catalog that should have priority
+    97         1          2.0      2.0      0.2      specifiedCatalog = SpecifiedCatalog()  # just in case create a catalog class
+    98         1          0.0      0.0      0.0      if (
+    99         1          1.0      1.0      0.1          currentCatalog == ""
+   100                                               ):  # if we go to check the manually set catalog, and there is none, then we either need to use the default or prompt the user
+   101                                                   req = check_for_yaml(filename)
+   102                                                   if req[
+   103                                                       0
+   104                                                   ]:  #  if the file both exists and has something at the key "catalog_name", then we can just use this as a default
+   105                                                       currentCatalog = req[
+   106                                                           1
+   107                                                       ]  # we set the catalog (and the backup listing in the catalog class) to be the listed default from the yaml file
+   108                                                   else:  # if either the file does not exist, or the "catalog_name" key is empty, we need to ask the user to set this
+   109                                                       with open(filename) as f:  # open yaml file
+   110                                                           specifiedCatalog.query_for_catalog(
+   111                                                               default=list(catalog)[0]
+   112                                                           )  # this runs the script from catalog.py to prompt the user for their default choice
+   113                                                           specifiedCatalog.change_default_catalog(
+   114                                                               filename, specifiedCatalog.currentCatalog
+   115                                                           )  # update the yaml file to house the default
+   116                                                           currentCatalog = (
+   117                                                               specifiedCatalog.currentCatalog
+   118                                                           )  # set the catalog choice
+   119         1          0.0      0.0      0.0      return currentCatalog
 
 Total time: 0 s
 File: /Users/claracook/Desktop/databroker-ls/databroker_ls/command_line.py
-Function: set_default at line 114
+Function: set_default at line 122
 
 Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
-   114                                           @profile
-   115                                           def set_default(filename):
-   116                                               """
-   117                                               This function will be called when the user uses the:
-   118                                               '--updateDefault' command line argument.
-   119                                               It verifies that this is an accessible catalog and that they at some point picked a catalog.
-   120                                               """
-   121                                           
-   122                                               changing_catalog = (
-   123                                                   get_args().updateDefault
-   124                                               )  # get what is stored in the argument for updateDefault
-   125                                               if changing_catalog in list(
-   126                                                   catalog
-   127                                               ):  # don't update it to a catalog that we cannot access
-   128                                                   specifiedCatalog = SpecifiedCatalog()  # get the catalog class
-   129                                                   if not path.exists(
-   130                                                       filename
-   131                                                   ):  # if the file does not exist at all, we will want to create it
-   132                                                       open(filename, "x+")  # create it
-   133                                                   specifiedCatalog.change_default_catalog(
-   134                                                       filename, changing_catalog
-   135                                                   )  # change the catalog in the conf file
-   136                                               else:
-   137                                                   with open(filename, "r") as f:  # open the yaml file we now know exists
-   138                                                       documents = yaml.full_load(f)  # load the contents
-   139                                                       # explanation to the user that the catalog they picked won't work
-   140                                                       print(
-   141                                                           f"\nThe specified catalog was not available. The available catalogs are: \n{list(catalog)}\nWe will load data from the current default catalog: \n {documents['catalog_name']}\n"
-   142                                                       )
+   122                                           @profile
+   123                                           def set_default(filename):
+   124                                               """
+   125                                               This function will be called when the user uses the:
+   126                                               '--updateDefault' command line argument.
+   127                                               It verifies that this is an accessible catalog and that they at some point picked a catalog.
+   128                                               """
+   129                                           
+   130                                               changing_catalog = (
+   131                                                   get_args().updateDefault
+   132                                               )  # get what is stored in the argument for updateDefault
+   133                                               if changing_catalog in list(
+   134                                                   catalog
+   135                                               ):  # don't update it to a catalog that we cannot access
+   136                                                   specifiedCatalog = SpecifiedCatalog()  # get the catalog class
+   137                                                   if not path.exists(
+   138                                                       filename
+   139                                                   ):  # if the file does not exist at all, we will want to create it
+   140                                                       open(filename, "x+")  # create it
+   141                                                   specifiedCatalog.change_default_catalog(
+   142                                                       filename, changing_catalog
+   143                                                   )  # change the catalog in the conf file
+   144                                               else:
+   145                                                   with open(filename, "r") as f:  # open the yaml file we now know exists
+   146                                                       documents = yaml.full_load(f)  # load the contents
+   147                                                       # explanation to the user that the catalog they picked won't work
+   148                                                       print(
+   149                                                           f"\nThe specified catalog was not available. The available catalogs are: \n{list(catalog)}\nWe will load data from the current default catalog: \n {documents['catalog_name']}\n"
+   150                                                       )
 
-Total time: 0.003307 s
+Total time: 0.003083 s
 File: /Users/claracook/Desktop/databroker-ls/databroker_ls/command_line.py
-Function: get_number at line 145
+Function: get_number at line 153
 
 Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
-   145                                           @profile
-   146                                           def get_number():
-   147                                               """
-   148                                               This function finds how many entries should be shown.
-   149                                               The negative indicates if this should be at the beginning or end.
-   150                                               """
-   151                                           
-   152         1          1.0      1.0      0.0      number = 0  # this is used in the ls class for how many runs should be shown. If it stays at 0, all runs will be shown
-   153         1       1073.0   1073.0     32.4      if get_args().number != 10:  # default is 10
-   154                                                   number = (
-   155                                                       get_args().number
-   156                                                   )  # if not the default, give them the head with that many shown
-   157         1       1069.0   1069.0     32.3      if get_args().head:  # if they only want to see the head (most recent)
-   158                                                   number = abs(
-   159                                                       get_args().number
-   160                                                   )  # we will give the ls class the positive number (default is 10 but, they can specify)
-   161         1       1163.0   1163.0     35.2      if get_args().tail:  # if they only want to see the tail (most distant)
-   162                                                   number = -1 * abs(
+   153                                           @profile
+   154                                           def get_number():
+   155                                               """
+   156                                               This function finds how many entries should be shown.
+   157                                               The negative indicates if this should be at the beginning or end.
+   158                                               """
+   159                                           
+   160         1          0.0      0.0      0.0      number = 0  # this is used in the ls class for how many runs should be shown. If it stays at 0, all runs will be shown
+   161         1        995.0    995.0     32.3      if get_args().number != 10:  # default is 10
+   162                                                   number = (
    163                                                       get_args().number
-   164                                                   )  # we will give the ls class the negative number (default is -10 but, they can specify)
-   165         1          1.0      1.0      0.0      return number
+   164                                                   )  # if not the default, give them the head with that many shown
+   165         1        995.0    995.0     32.3      if get_args().head:  # if they only want to see the head (most recent)
+   166                                                   number = abs(
+   167                                                       get_args().number
+   168                                                   )  # we will give the ls class the positive number (default is 10 but, they can specify)
+   169         1       1093.0   1093.0     35.5      if get_args().tail:  # if they only want to see the tail (most distant)
+   170                                                   number = -1 * abs(
+   171                                                       get_args().number
+   172                                                   )  # we will give the ls class the negative number (default is -10 but, they can specify)
+   173         1          0.0      0.0      0.0      return number
 
-Total time: 11.05 s
+Total time: 11.26 s
 File: /Users/claracook/Desktop/databroker-ls/databroker_ls/command_line.py
-Function: main at line 168
+Function: main at line 176
 
 Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
-   168                                           @profile
-   169                                           def main():
-   170         1          0.0      0.0      0.0      if (
-   171         1       1641.0   1641.0      0.0          get_args().updateDefault
-   172                                               ):  # if this argument is there, we need to update the default catalog
-   173                                                   set_default(file)
-   174         2       1123.0    561.5      0.0      currentCatalog = get_current_catalog(
-   175         1          1.0      1.0      0.0          file
-   176                                               )  # get the catalog, either entered, default, or prompt for new default
-   177         2         25.0     12.5      0.0      print(
-   178         1          1.0      1.0      0.0          f"Loading the '{currentCatalog}' Catalog..."
-   179                                               )  # remind the user what the current catalog they're using is
-   180         2    8918305.0 4459152.5     80.7      object = ls(
-   181         1     892523.0 892523.0      8.1          catalog=catalog[currentCatalog],  # default or specified
-   182         1       1310.0   1310.0      0.0          fullUID=get_args().all,  # special case where we want to see the whole id
-   183         1       1086.0   1086.0      0.0          reverse=get_args().reverse,  # puts them in reverse order
-   184         1       3313.0   3313.0      0.0          number=get_number(),  # tells us how many and if at the end, beginning or all of them
-   185         1       1078.0   1078.0      0.0          searchKey=get_args().searchKey
-   186                                               )  # instantiate new ls object
-   187         1       2411.0   2411.0      0.0      title = "     Starting Time          Scan ID      UUID" if get_args().searchKey == "" else f"     Starting Time          Scan ID      UUID      Search Key: {get_args().searchKey}"
-   188         1       1087.0   1087.0      0.0      if get_args().all:
-   189                                                   title = "     Starting Time          Scan ID      UUID" if get_args().searchKey == "" else f"     Starting Time          Scan ID      UUID                                 Search Key: {get_args().searchKey}"
-   190         1         10.0     10.0      0.0      print(title)  # titles for our columns
-   191         1          0.0      0.0      0.0      data = (
-   192         1    1032917.0 1032917.0      9.3          object.output_data()
-   193                                               )  # first time we access data (no user actions necessary after command)
-   194         1     193202.0 193202.0      1.7      format_printing(data, object)
+   176                                           @profile
+   177                                           def main():
+   178         1          0.0      0.0      0.0      if (
+   179         1       1416.0   1416.0      0.0          get_args().updateDefault
+   180                                               ):  # if this argument is there, we need to update the default catalog
+   181                                                   set_default(file)
+   182         2        998.0    499.0      0.0      currentCatalog = get_current_catalog(
+   183         1          1.0      1.0      0.0          file
+   184                                               )  # get the catalog, either entered, default, or prompt for new default
+   185         2         22.0     11.0      0.0      print(
+   186         1          1.0      1.0      0.0          f"Loading the '{currentCatalog}' Catalog..."
+   187                                               )  # remind the user what the current catalog they're using is
+   188         2    9135648.0 4567824.0     81.1      object = ls(
+   189         1     918641.0 918641.0      8.2          catalog=catalog[currentCatalog],  # default or specified
+   190         1       1252.0   1252.0      0.0          fullUID=get_args().all,  # special case where we want to see the whole id
+   191         1       1004.0   1004.0      0.0          reverse=get_args().reverse,  # puts them in reverse order
+   192         1       3090.0   3090.0      0.0          number=get_number(),  # tells us how many and if at the end, beginning or all of them
+   193         1       1074.0   1074.0      0.0          searchKey=get_args().searchKey,
+   194                                               )  # instantiate new ls object
+   195         1          0.0      0.0      0.0      title = (
+   196         1          1.0      1.0      0.0          "     Starting Time          Scan ID      UUID"
+   197         1       1227.0   1227.0      0.0          if get_args().searchKey == ""
+   198         1       1083.0   1083.0      0.0          else f"     Starting Time          Scan ID      UUID      Search Key: {get_args().searchKey}"
+   199                                               )
+   200         1       1030.0   1030.0      0.0      if get_args().all:
+   201                                                   title = (
+   202                                                       "     Starting Time          Scan ID      UUID"
+   203                                                       if get_args().searchKey == ""
+   204                                                       else f"     Starting Time          Scan ID      UUID                                 Search Key: {get_args().searchKey}"
+   205                                                   )
+   206         1         10.0     10.0      0.0      print(title)  # titles for our columns
+   207         1          1.0      1.0      0.0      data = (
+   208         1    1007912.0 1007912.0      9.0          object.output_data()
+   209                                               )  # first time we access data (no user actions necessary after command)
+   210         1     185615.0 185615.0      1.6      format_printing(data, object)
 
-Total time: 8.91759 s
+Total time: 9.13481 s
 File: /Users/claracook/Desktop/databroker-ls/databroker_ls/ls.py
-Function: __init__ at line 46
+Function: __init__ at line 47
 
 Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
-    46                                               @profile
-    47                                               def __init__(self, catalog, fullUID, reverse, number, searchKey):
-    48         1          1.0      1.0      0.0          super().__init__()
-    49         1          1.0      1.0      0.0          self.catalog = catalog
-    50         1     118551.0 118551.0      1.3          print(catalog["f8c83910-4adb-4207-a465-9ff0ff0e9cd2"].metadata["start"]["uid"])
-    51         1       8428.0   8428.0      0.1          print(catalog["9e36935f-45c1-4694-a823-19271a00ae9d"].metadata["start"]["uid"])
-    52       131        147.0      1.1      0.0          for i in range(len(list(catalog))):  # setup for the uuids and the UUIDtoIndex
-    53       130        131.0      1.0      0.0              self.count += 1
-    54       130        129.0      1.0      0.0              index = -1 * (i + 1)  # how we get the backwards index
-    55       130    8789669.0  67612.8     98.6              uuid = catalog[index].metadata["start"]["uid"][: self.uuidLen]  # the uuid condensed down to our desired length
-    56       130        341.0      2.6      0.0              self.uuids.append(uuid)
-    57       130        171.0      1.3      0.0              self.UUIDtoIndex[uuid] = index
-    58         1          0.0      0.0      0.0          if fullUID:  # we get the whole UUID
-    59                                                       self.uuidLen = 36
-    60         1          1.0      1.0      0.0          self.reverse = reverse
-    61         1          1.0      1.0      0.0          self.number = number
-    62         1          0.0      0.0      0.0          self.searchKey = searchKey
-    63         1          1.0      1.0      0.0          if number < 0 and abs(number) >= len(
-    64                                                       list(catalog)
-    65                                                   ):  #  if the catalog is shorter than the number the user requested, we just show the whole catalog
-    66                                                       self.number = 0
-    67         1         22.0     22.0      0.0          print(self.count)
+    47                                               @profile
+    48                                               def __init__(self, catalog, fullUID, reverse, number, searchKey):
+    49         1          1.0      1.0      0.0          super().__init__()
+    50         1          1.0      1.0      0.0          self.catalog = catalog
+    51       131        142.0      1.1      0.0          for i in range(len(list(catalog))):  # setup for the uuids and the UUIDtoIndex
+    52       130        108.0      0.8      0.0              self.count += 1
+    53       130        123.0      0.9      0.0              index = -1 * (i + 1)  # how we get the backwards index
+    54       260    9133634.0  35129.4    100.0              uuid = catalog[index].metadata["start"]["uid"][
+    55       130        306.0      2.4      0.0                  : self.uuidLen
+    56                                                       ]  # the uuid condensed down to our desired length
+    57       130        217.0      1.7      0.0              self.uuids.append(uuid)
+    58       130        164.0      1.3      0.0              self.UUIDtoIndex[uuid] = index
+    59         1          0.0      0.0      0.0          if fullUID:  # we get the whole UUID
+    60                                                       self.uuidLen = 36
+    61         1          1.0      1.0      0.0          self.reverse = reverse
+    62         1          1.0      1.0      0.0          self.number = number
+    63         1          1.0      1.0      0.0          self.searchKey = searchKey
+    64         1          1.0      1.0      0.0          if number < 0 and abs(number) >= len(
+    65                                                       list(catalog)
+    66                                                   ):  #  if the catalog is shorter than the number the user requested, we just show the whole catalog
+    67                                                       self.number = 0
+    68         1        105.0    105.0      0.0          print(self.count)
 
-Total time: 1.03109 s
+Total time: 1.00592 s
 File: /Users/claracook/Desktop/databroker-ls/databroker_ls/ls.py
-Function: organize_data at line 73
+Function: organize_data at line 74
 
 Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
-    73                                               @profile
-    74                                               def organize_data(self):
-    75                                                   """
-    76                                                   This function takes the uuids loaded in the init function and picks out what we want to list
-    77                                                   """
-    78         1         18.0     18.0      0.0          howManyEntries = len(list(self.catalog))  # assume we want every entry
-    79         1          1.0      1.0      0.0          if (
-    80         1          1.0      1.0      0.0              self.number != 0
-    81                                                   ):  # if the user specifies that they don't want every entry, we update how many we will see
-    82                                                       howManyEntries = abs(self.number)
-    83         1          1.0      1.0      0.0          data = []
-    84         1          1.0      1.0      0.0          search_results = ""
-    85         1          0.0      0.0      0.0          i = 0
-    86       131        116.0      0.9      0.0          for index in self.UUIDtoIndex.values():  # assume we are going thru all runs
-    87       130         60.0      0.5      0.0              if i < howManyEntries:  # limit it to how many entries the user wants to see
-    88       130         53.0      0.4      0.0                  counter = index  # normal
-    89       130     257422.0   1980.2     25.0                  value = self.search_dict(self.catalog[counter].metadata, self.searchKey)
-    90       130        102.0      0.8      0.0                  if self.searchKey == "" or value is not None:
-    91       130         86.0      0.7      0.0                      if self.number < 0:
-    92                                                                   counter = howManyEntries - (
-    93                                                                       len(list(self.catalog)) + abs(index)
-    94                                                                   )  # reverse
-    95       260        183.0      0.7      0.0                      data.append(
-    96       130         76.0      0.6      0.0                          [
-    97       260       2522.0      9.7      0.2                              self.to_readable_date(
-    98       390     255430.0    654.9     24.8                                  self.catalog[counter]
-    99       130        123.0      0.9      0.0                                  .metadata["start"]
-   100       130         58.0      0.4      0.0                                  .get("time", "None               ")
-   101                                                                       ),  # make the data something a human could understand
-   102       130     256852.0   1975.8     24.9                              self.catalog[counter].metadata["start"].get("scan_id", "None "),
-   103       130        119.0      0.9      0.0                              (
-   104       390     257405.0    660.0     25.0                                  self.catalog[counter]
-   105       130        127.0      1.0      0.0                                  .metadata["start"]
-   106       130         55.0      0.4      0.0                                  .get("uid", "None    ")
-   107       130        107.0      0.8      0.0                              )[: self.uuidLen],
-   108       130         71.0      0.5      0.0                              value,
-   109                                                                   ]
-   110                                                               )
-   111       130        101.0      0.8      0.0                      i += 1  # COME BACK HERE
-   112         1          1.0      1.0      0.0          return data
+    74                                               @profile
+    75                                               def organize_data(self):
+    76                                                   """
+    77                                                   This function takes the uuids loaded in the init function and picks out what we want to list
+    78                                                   """
+    79         1         16.0     16.0      0.0          howManyEntries = len(list(self.catalog))  # assume we want every entry
+    80         1          1.0      1.0      0.0          if (
+    81         1          0.0      0.0      0.0              self.number != 0
+    82                                                   ):  # if the user specifies that they don't want every entry, we update how many we will see
+    83                                                       howManyEntries = abs(self.number)
+    84         1          1.0      1.0      0.0          data = []
+    85         1          0.0      0.0      0.0          search_results = ""
+    86         1          0.0      0.0      0.0          i = 0
+    87       131         82.0      0.6      0.0          for index in self.UUIDtoIndex.values():  # assume we are going thru all runs
+    88       130         59.0      0.5      0.0              if i < howManyEntries:  # limit it to how many entries the user wants to see
+    89       130         50.0      0.4      0.0                  counter = index  # normal
+    90       130     250813.0   1929.3     24.9                  value = self.search_dict(self.catalog[counter].metadata, self.searchKey)
+    91       130         98.0      0.8      0.0                  if self.searchKey == "" or value is not None:
+    92       130         87.0      0.7      0.0                      if self.number < 0:
+    93                                                                   counter = howManyEntries - (
+    94                                                                       len(list(self.catalog)) + abs(index)
+    95                                                                   )  # reverse
+    96       260        160.0      0.6      0.0                      data.append(
+    97       130         67.0      0.5      0.0                          [
+    98       260       2480.0      9.5      0.2                              self.to_readable_date(
+    99       390     249102.0    638.7     24.8                                  self.catalog[counter]
+   100       130        136.0      1.0      0.0                                  .metadata["start"]
+   101       130         49.0      0.4      0.0                                  .get("time", "None               ")
+   102                                                                       ),  # make the data something a human could understand
+   103       390     250965.0    643.5     24.9                              self.catalog[counter]
+   104       130        133.0      1.0      0.0                              .metadata["start"]
+   105       130         61.0      0.5      0.0                              .get("scan_id", "None "),
+   106       130        185.0      1.4      0.0                              (
+   107       390     250916.0    643.4     24.9                                  self.catalog[counter]
+   108       130        128.0      1.0      0.0                                  .metadata["start"]
+   109       130         55.0      0.4      0.0                                  .get("uid", "None    ")
+   110       130        129.0      1.0      0.0                              )[: self.uuidLen],
+   111       130         57.0      0.4      0.0                              value,
+   112                                                                   ]
+   113                                                               )
+   114       130         89.0      0.7      0.0                      i += 1  # COME BACK HERE
+   115         1          1.0      1.0      0.0          return data
 
-Total time: 0.000867 s
+Total time: 0.000872 s
 File: /Users/claracook/Desktop/databroker-ls/databroker_ls/ls.py
-Function: search_dict at line 114
+Function: search_dict at line 117
 
 Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
-   114                                               @profile
-   115                                               def search_dict(self, obj, key):
-   116       260        271.0      1.0     31.3          if key in obj:
-   117       130         78.0      0.6      9.0              return obj[key]
-   118       130        151.0      1.2     17.4          for k, v in obj.items():
-   119       130         86.0      0.7      9.9              if isinstance(v, dict):
-   120       130        168.0      1.3     19.4                  item = self.search_dict(v, key)
-   121       130         55.0      0.4      6.3                  if item is not None:
-   122       130         58.0      0.4      6.7                      return item
+   117                                               @profile
+   118                                               def search_dict(self, obj, key):
+   119       260        259.0      1.0     29.7          if key in obj:
+   120       130        102.0      0.8     11.7              return obj[key]
+   121       130        148.0      1.1     17.0          for k, v in obj.items():
+   122       130         79.0      0.6      9.1              if isinstance(v, dict):
+   123       130        172.0      1.3     19.7                  item = self.search_dict(v, key)
+   124       130         61.0      0.5      7.0                  if item is not None:
+   125       130         51.0      0.4      5.8                      return item
 
-Total time: 1.03291 s
+Total time: 1.0079 s
 File: /Users/claracook/Desktop/databroker-ls/databroker_ls/ls.py
-Function: output_data at line 124
+Function: output_data at line 127
 
 Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
-   124                                               @profile
-   125                                               def output_data(self):
-   126         1    1032910.0 1032910.0    100.0          data = self.organize_data()  # assume not reversed
-   127         1          1.0      1.0      0.0          if self.reverse:
-   128                                                       data = data[::-1]  # reverse it
-   129         1          1.0      1.0      0.0          return data
+   127                                               @profile
+   128                                               def output_data(self):
+   129         1    1007904.0 1007904.0    100.0          data = self.organize_data()  # assume not reversed
+   130         1          0.0      0.0      0.0          if self.reverse:
+   131                                                       data = data[::-1]  # reverse it
+   132         1          0.0      0.0      0.0          return data
 

@@ -33,7 +33,15 @@ def format_printing(data, object):
             index = "{message: <{width}}".format(
                 message=object.UUIDtoIndex[data[i][2][:8]], width=5
             )
-        print(index, data[i][0], "   ", data[i][1], "   ", data[i][2], f"  {data[i][3]}" if data[i][3] is not None else "")
+        print(
+            index,
+            data[i][0],
+            "   ",
+            data[i][1],
+            "   ",
+            data[i][2],
+            f"  {data[i][3]}" if data[i][3] is not None else "",
+        )
 
 
 # @profile
@@ -182,11 +190,19 @@ def main():
         fullUID=get_args().all,  # special case where we want to see the whole id
         reverse=get_args().reverse,  # puts them in reverse order
         number=get_number(),  # tells us how many and if at the end, beginning or all of them
-        searchKey=get_args().searchKey
+        searchKey=get_args().searchKey,
     )  # instantiate new ls object
-    title = "     Starting Time          Scan ID      UUID" if get_args().searchKey == "" else f"     Starting Time          Scan ID      UUID      Search Key: {get_args().searchKey}"
+    title = (
+        "     Starting Time          Scan ID      UUID"
+        if get_args().searchKey == ""
+        else f"     Starting Time          Scan ID      UUID      Search Key: {get_args().searchKey}"
+    )
     if get_args().all:
-        title = "     Starting Time          Scan ID      UUID" if get_args().searchKey == "" else f"     Starting Time          Scan ID      UUID                                 Search Key: {get_args().searchKey}"
+        title = (
+            "     Starting Time          Scan ID      UUID"
+            if get_args().searchKey == ""
+            else f"     Starting Time          Scan ID      UUID                                 Search Key: {get_args().searchKey}"
+        )
     print(title)  # titles for our columns
     data = (
         object.output_data()

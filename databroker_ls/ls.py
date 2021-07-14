@@ -28,6 +28,7 @@ import argparse
 
 from databroker._drivers.msgpack import BlueskyMsgpackCatalog
 
+
 class ls:
     """
     This class gets the data that we are going to list out.
@@ -47,12 +48,12 @@ class ls:
     def __init__(self, catalog, fullUID, reverse, number, searchKey):
         super().__init__()
         self.catalog = catalog
-        print(catalog["f8c83910-4adb-4207-a465-9ff0ff0e9cd2"].metadata["start"]["uid"])
-        print(catalog["9e36935f-45c1-4694-a823-19271a00ae9d"].metadata["start"]["uid"])
         for i in range(len(list(catalog))):  # setup for the uuids and the UUIDtoIndex
             self.count += 1
             index = -1 * (i + 1)  # how we get the backwards index
-            uuid = catalog[index].metadata["start"]["uid"][: self.uuidLen]  # the uuid condensed down to our desired length
+            uuid = catalog[index].metadata["start"]["uid"][
+                : self.uuidLen
+            ]  # the uuid condensed down to our desired length
             self.uuids.append(uuid)
             self.UUIDtoIndex[uuid] = index
         if fullUID:  # we get the whole UUID
@@ -99,7 +100,9 @@ class ls:
                                 .metadata["start"]
                                 .get("time", "None               ")
                             ),  # make the data something a human could understand
-                            self.catalog[counter].metadata["start"].get("scan_id", "None "),
+                            self.catalog[counter]
+                            .metadata["start"]
+                            .get("scan_id", "None "),
                             (
                                 self.catalog[counter]
                                 .metadata["start"]

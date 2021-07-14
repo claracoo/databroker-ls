@@ -45,7 +45,7 @@ def place_data(numDataPts):
     sampleNames = [random_char(2) for x in range(numDataPts)]
     for i in range(numDataPts):
         with RunBuilder(
-                metadata={"sample": sampleNames[i], "scan_id": randint(10000, 99999)}
+            metadata={"sample": sampleNames[i], "scan_id": randint(10000, 99999)}
         ) as builder:
             builder.add_stream("primary", data={"x": [1, 2, 3], "y": [10, 20, 30]})
             builder.add_stream("baseline", data={"A": [-1, -1], "B": [250, 250]})
@@ -69,7 +69,9 @@ def joinDateAndTime(arr):
 def test_place_data():
     numDataPoints = 20
     place_data(numDataPoints)
-    object = ls(catalog=catalog, fullUID=True, reverse=False, number=numDataPoints, searchKey="")
+    object = ls(
+        catalog=catalog, fullUID=True, reverse=False, number=numDataPoints, searchKey=""
+    )
     spaced = object.output_data()
     for i in range(numDataPoints):
         assert object.to_readable_date(
@@ -85,15 +87,15 @@ def test_check_for_yaml():
     filename = "../conf_catalog.yml"
     if path.exists(filename):
         assert (
-                check_for_yaml(filename)[0] is True
+            check_for_yaml(filename)[0] is True
         )  # this should work because it is already set up on my machine
         assert check_for_yaml(filename)[1] in list(databroker.catalog)
     filename = "../non_existent_file.yml"
     assert (
-            check_for_yaml(filename)[0] is False
+        check_for_yaml(filename)[0] is False
     )  # this does not yet exist, but will be created here
     assert (
-            check_for_yaml(filename)[0] is False
+        check_for_yaml(filename)[0] is False
     )  # just created but bad formatting (makefile will remove for next test run)
 
     # check to make sure if the file exists but has the wrong things
@@ -156,7 +158,7 @@ def searching_dict_check(key):
                     "iron hills": ["gror", "nain", "dain"],
                     "blue mountains": ["fili", "kili"],
                     "erebor": ["thorin", "thrain", "thror"],
-                    "dwarves": "khazad"
+                    "dwarves": "khazad",
                 }
             },
         },
