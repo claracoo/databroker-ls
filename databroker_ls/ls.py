@@ -43,6 +43,7 @@ class ls:
     number = 0  # if it is 0, we will ignore it, if it is negative, we want the tail, if its positve we want the head
     searchKey = ""
 
+    @profile
     def __init__(self, catalog, fullUID, reverse, number, searchKey):
         super().__init__()
         self.catalog = catalog
@@ -67,6 +68,7 @@ class ls:
         """Linux time to human readable date and time"""
         return datetime.utcfromtimestamp(linuxtime).strftime("%Y-%m-%d %H:%M:%S")
 
+    @profile
     def organize_data(self):
         """
         This function takes the uuids loaded in the init function and picks out what we want to list
@@ -107,6 +109,7 @@ class ls:
                     i += 1  # COME BACK HERE
         return data
 
+    @profile
     def search_dict(self, obj, key):
         if key in obj:
             return obj[key]
@@ -116,6 +119,7 @@ class ls:
                 if item is not None:
                     return item
 
+    @profile
     def output_data(self):
         data = self.organize_data()  # assume not reversed
         if self.reverse:

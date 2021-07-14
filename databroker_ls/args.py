@@ -1,7 +1,7 @@
 import argparse
 from databroker_ls.catalog import SpecifiedCatalog
 
-
+@profile
 def get_args():
     specifiedCatalog = SpecifiedCatalog()
     parser = argparse.ArgumentParser()
