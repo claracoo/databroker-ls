@@ -54,16 +54,17 @@ setup(
             "db-snek = databroker_ls.snek:main",
             "db-ls = databroker_ls.command_line:main",
         ],
+        "intake.catalogs": ["local = databroker_ls:databroker_ls_catalog_instance"],
     },
     include_package_data=True,
     package_data={
         "databroker_ls": [
             "db-snek = databroker_ls.snek.py",
-            "db-ls = databroker_ls.main.py"
+            "db-ls = databroker_ls.main.py",
             # When adding files here, remember to update MANIFEST.in as well,
             # or else they will not be included in the distribution on PyPI!
             # 'path/to/data_file',
-        ]
+        ],
     },
     install_requires=requirements,
     license="BSD (3-clause)",
