@@ -12,12 +12,15 @@ import os.path
 from os import path
 import yaml
 
+import databroker_ls
+from os import path
 """
 This file is a script to make the arguments from args.get_args() affect the printing
 """
 
 
-file = "./conf_catalog.yml"
+path_prefix = path.split(databroker_ls.__path__[0])[0]
+file = path.join(path_prefix, "conf_catalog.yml")
 
 
 # @profile

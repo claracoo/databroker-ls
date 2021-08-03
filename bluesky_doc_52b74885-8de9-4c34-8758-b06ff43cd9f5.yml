@@ -1,0 +1,116 @@
+descriptor:
+  configuration:
+    det:
+      data:
+        det_Imax: 1
+        det_center: 0
+        det_noise: none
+        det_noise_multiplier: 1
+        det_sigma: 1
+      data_keys:
+        det_Imax:
+          dtype: integer
+          shape: []
+          source: SIM:det_Imax
+        det_center:
+          dtype: integer
+          shape: []
+          source: SIM:det_center
+        det_noise:
+          dtype: integer
+          enum_strs:
+          - none
+          - poisson
+          - uniform
+          shape: []
+          source: SIM:det_noise
+        det_noise_multiplier:
+          dtype: integer
+          shape: []
+          source: SIM:det_noise_multiplier
+        det_sigma:
+          dtype: integer
+          shape: []
+          source: SIM:det_sigma
+      timestamps:
+        det_Imax: 1628002589.4124997
+        det_center: 1628002589.4124937
+        det_noise: 1628002589.4124138
+        det_noise_multiplier: 1628002589.4124546
+        det_sigma: 1628002589.412508
+  data_keys:
+    det:
+      dtype: number
+      object_name: det
+      precision: 3
+      shape: []
+      source: SIM:det
+  hints:
+    det:
+      fields:
+      - det
+  name: primary
+  object_keys:
+    det:
+    - det
+  run_start: 52b74885-8de9-4c34-8758-b06ff43cd9f5
+  time: 1628002601.424833
+  uid: c9c2437a-159d-428c-97ac-b0f582c0a41b
+event:
+- data:
+    det: 1.0
+  descriptor: c9c2437a-159d-428c-97ac-b0f582c0a41b
+  filled: {}
+  seq_num: 1
+  time: 1628002601.4268842
+  timestamps:
+    det: 1628002601.4241526
+  uid: 73764c69-8c08-4de5-8569-3fedfdc17c90
+- data:
+    det: 1.0
+  descriptor: c9c2437a-159d-428c-97ac-b0f582c0a41b
+  filled: {}
+  seq_num: 2
+  time: 1628002601.4297187
+  timestamps:
+    det: 1628002601.4286592
+  uid: c5fad9c7-0b3b-4d36-ba71-df2f536cd094
+- data:
+    det: 1.0
+  descriptor: c9c2437a-159d-428c-97ac-b0f582c0a41b
+  filled: {}
+  seq_num: 3
+  time: 1628002601.432049
+  timestamps:
+    det: 1628002601.4314406
+  uid: 64de2dda-4008-4f22-868b-de68aa00da4e
+start:
+  detectors:
+  - det
+  hints:
+    dimensions:
+    - - - time
+      - primary
+  num_intervals: 2
+  num_points: 3
+  plan_args:
+    detectors:
+    - SynGauss(prefix='', name='det', read_attrs=['val'], configuration_attrs=['Imax',
+      'center', 'sigma', 'noise', 'noise_multiplier'])
+    num: 3
+  plan_name: count
+  plan_type: generator
+  scan_id: 4
+  time: 1628002601.4211361
+  uid: 52b74885-8de9-4c34-8758-b06ff43cd9f5
+  versions:
+    bluesky: 1.7.0
+    ophyd: 1.6.1
+stop:
+  exit_status: success
+  num_events:
+    primary: 3
+  reason: ''
+  run_start: 52b74885-8de9-4c34-8758-b06ff43cd9f5
+  time: 1628002601.4329424
+  uid: cee5fa05-0666-4edf-8b06-3dde587e6204

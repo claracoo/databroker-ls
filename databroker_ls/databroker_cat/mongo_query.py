@@ -5,17 +5,6 @@ import pprint
 from collections import OrderedDict
 import argparse
 
-
-def get_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "-u",
-        "--uid",
-        help="Supply a uid",
-        type=str,
-        dest="uid",
-    )
-
 def output_bluesky_docs(uid):
     myclient = pymongo.MongoClient("mongodb://localhost:27017/")
     mydb = myclient["md"]
@@ -35,20 +24,20 @@ def output_bluesky_docs(uid):
     descriptor_query = {'descriptor': str(descriptor["uid"])}
     descriptor.pop("_id")
 
-    event = list(mydb["event"].find(descriptor_query))[0]
-    event.pop("_id")
+    event_list = list(mydb["event"].find(descriptor_query))
+    events = {}
+    for event in event_list:
+        event.pop("_id")
+        key = "event_" + str(event["uid"])
+        events[key] = event
 
     stop = list(mydb["run_stop"].find(run_start_query))[0]
     stop.pop("_id")
 
-    #otherdb = myclient["ar"]
-    #resource = otherdb["resource"].find(myquery)
-    #datum = otherdb["datum"].find(myquery)
-
     data = {}
     data["start"] = start
     data["descriptor"] = descriptor
-    data["event"] = event
+    data["event"] = events
     data["stop"] = stop
 
     if not path.exists(
@@ -57,12 +46,3 @@ def output_bluesky_docs(uid):
         open(filename, "x+")
     with open(filename, "w+") as f:  # open file to write there
         yaml.dump(data, f)  # put the key value pair in the yml file
-
-
-def main():
-    uid = "6834f071-7fef-4b01-9bc5-eb60790ae641"
-    output_bluesky_docs(uid)
-
-
-if __name__ == "__main__":
-    main()

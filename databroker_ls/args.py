@@ -14,6 +14,13 @@ def get_args():
         default=specifiedCatalog.currentCatalog,
     )
     parser.add_argument(
+        "--run",
+        help="Pass the run you want to show",
+        type=str,
+        dest="run",
+        default="-1",
+    )
+    parser.add_argument(
         "-u",
         "--updateDefault",
         help="Change the default catalog name",
