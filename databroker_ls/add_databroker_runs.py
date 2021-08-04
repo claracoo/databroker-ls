@@ -10,4 +10,4 @@ hw = hw()
 RE.subscribe(db.insert)
 
 for i in range(5):
-    RE(count([hw.det], num=3))
+    RE(count([hw.img], num=3))
