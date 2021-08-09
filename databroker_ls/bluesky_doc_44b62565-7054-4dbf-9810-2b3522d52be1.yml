@@ -1,0 +1,132 @@
+datum:
+  datume2f3924d-ac89-4b53-a3de-9fa19e6527bf/0:
+    datum_id: e2f3924d-ac89-4b53-a3de-9fa19e6527bf/0
+    datum_kwargs:
+      index: 0
+    resource: e2f3924d-ac89-4b53-a3de-9fa19e6527bf
+  datume2f3924d-ac89-4b53-a3de-9fa19e6527bf/1:
+    datum_id: e2f3924d-ac89-4b53-a3de-9fa19e6527bf/1
+    datum_kwargs:
+      index: 1
+    resource: e2f3924d-ac89-4b53-a3de-9fa19e6527bf
+  datume2f3924d-ac89-4b53-a3de-9fa19e6527bf/2:
+    datum_id: e2f3924d-ac89-4b53-a3de-9fa19e6527bf/2
+    datum_kwargs:
+      index: 2
+    resource: e2f3924d-ac89-4b53-a3de-9fa19e6527bf
+descriptor:
+  descriptor_a7e7bb67-38e6-4d0b-9399-36e319164c16:
+    configuration:
+      img:
+        data:
+          img: e2f3924d-ac89-4b53-a3de-9fa19e6527bf/0
+        data_keys:
+          img:
+            dtype: array
+            external: FILESTORE
+            precision: 3
+            shape:
+            - 10
+            - 10
+            source: SIM:img
+        timestamps:
+          img: 1628085978.2527082
+    data_keys:
+      img:
+        dtype: array
+        external: FILESTORE
+        object_name: img
+        precision: 3
+        shape:
+        - 10
+        - 10
+        source: SIM:img
+    hints:
+      img:
+        fields: []
+    name: primary
+    object_keys:
+      img:
+      - img
+    run_start: 44b62565-7054-4dbf-9810-2b3522d52be1
+    time: 1628085978.255172
+    uid: a7e7bb67-38e6-4d0b-9399-36e319164c16
+event:
+  event0ad532a1-474f-4058-a49f-c314ce9b07eb:
+    data:
+      img: e2f3924d-ac89-4b53-a3de-9fa19e6527bf/0
+    descriptor: a7e7bb67-38e6-4d0b-9399-36e319164c16
+    filled:
+      img: false
+    seq_num: 1
+    time: 1628085978.264464
+    timestamps:
+      img: 1628085978.2527082
+    uid: 0ad532a1-474f-4058-a49f-c314ce9b07eb
+  event98378320-181d-422b-b50c-e877d723f8e3:
+    data:
+      img: e2f3924d-ac89-4b53-a3de-9fa19e6527bf/1
+    descriptor: a7e7bb67-38e6-4d0b-9399-36e319164c16
+    filled:
+      img: false
+    seq_num: 2
+    time: 1628085978.27232
+    timestamps:
+      img: 1628085978.266208
+    uid: 98378320-181d-422b-b50c-e877d723f8e3
+  eventbc3a3dac-95ed-4d83-8e2e-b0de0e4e2a0c:
+    data:
+      img: e2f3924d-ac89-4b53-a3de-9fa19e6527bf/2
+    descriptor: a7e7bb67-38e6-4d0b-9399-36e319164c16
+    filled:
+      img: false
+    seq_num: 3
+    time: 1628085978.278065
+    timestamps:
+      img: 1628085978.274446
+    uid: bc3a3dac-95ed-4d83-8e2e-b0de0e4e2a0c
+resource:
+  resource_e2f3924d-ac89-4b53-a3de-9fa19e6527bf:
+    path_semantics: posix
+    resource_kwargs: {}
+    resource_path: e024e8
+    root: /var/folders/6c/hqk3j34x1slf17fx5ftkfk640000gq/T/tmpja5r4oyj
+    run_start: 44b62565-7054-4dbf-9810-2b3522d52be1
+    spec: NPY_SEQ
+    uid: e2f3924d-ac89-4b53-a3de-9fa19e6527bf
+start:
+  detectors:
+  - img
+  hints:
+    dimensions:
+    - - - time
+      - primary
+  num_intervals: 2
+  num_points: 3
+  plan_args:
+    detectors:
+    - "SynSignalWithRegistry(name='img', value=array([[1., 1., 1., 1., 1., 1., 1.,\
+      \ 1., 1., 1.],\n       [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],\n       [1.,\
+      \ 1., 1., 1., 1., 1., 1., 1., 1., 1.],\n       [1., 1., 1., 1., 1., 1., 1.,\
+      \ 1., 1., 1.],\n       [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],\n       [1.,\
+      \ 1., 1., 1., 1., 1., 1., 1., 1., 1.],\n       [1., 1., 1., 1., 1., 1., 1.,\
+      \ 1., 1., 1.],\n       [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],\n       [1.,\
+      \ 1., 1., 1., 1., 1., 1., 1., 1., 1.],\n       [1., 1., 1., 1., 1., 1., 1.,\
+      \ 1., 1., 1.]]), timestamp=1628085976.805414)"
+    num: 3
+  plan_name: count
+  plan_type: generator
+  scan_id: 4
+  time: 1628085978.25004
+  uid: 44b62565-7054-4dbf-9810-2b3522d52be1
+  versions:
+    bluesky: 1.6.7
+    ophyd: 1.6.1
+stop:
+  exit_status: success
+  num_events:
+    primary: 3
+  reason: ''
+  run_start: 44b62565-7054-4dbf-9810-2b3522d52be1
+  time: 1628085978.280107
+  uid: cc5dd727-f530-436b-a095-adecfb55f46d
