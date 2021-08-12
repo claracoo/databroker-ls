@@ -8,6 +8,7 @@ from databroker_ls.databroker_cat.mongo_query import output_bluesky_docs
 
 import yaml
 import pprint
+import pymongo
 
 def make_doc_list(documents, key):
     doc_list = []
@@ -37,11 +38,29 @@ def get_uid():
     run = get_args().run
     if run[0] == "-":
         run = int(run)
-    uid = get_catalog()[run].metadata["start"]["uid"]
-    return uid
+    try:
+        get_catalog()[run]
+    except LookupError:
+        print("This was not a valid run, try 'db-ls' to see the possible runs.")
+        return None
+    return get_catalog()[run].metadata["start"]["uid"]
+
+def is_connected_to_mongo():
+    maxSevSelDelay = 1
+    try:
+        url = "mongodb://127.0.0.1:27017"
+        client = pymongo.MongoClient(url, serverSelectionTimeoutMS=maxSevSelDelay)
+        client.admin.command("serverStatus")
+    except pymongo.errors.ServerSelectionTimeoutError as err:
+            return False
+    return True
 
 def main():
-    uid = get_uid()
-    output_bluesky_docs(uid)
-    bluesky_doc = "bluesky_doc_" + str(uid) + ".yml"
-    print_docs(bluesky_doc)
+    if is_connected_to_mongo():
+        uid = get_uid()
+        if uid != None:
+            output_bluesky_docs(uid)
+            bluesky_doc = "bluesky_doc_" + str(uid) + ".yml"
+            print_docs(bluesky_doc)
+    else:
+        print("You are not connected to mongo.")
