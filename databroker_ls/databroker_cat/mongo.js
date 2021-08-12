@@ -1,3 +1,5 @@
+// This was another script to connect to mongo... now unnecessary
+
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 
